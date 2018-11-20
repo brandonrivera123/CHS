@@ -11,5 +11,9 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Hi.cshtml" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\superhero.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\lib\bootstrap\dist\css\superhero.css" />
   </ItemGroup>
 </Project>

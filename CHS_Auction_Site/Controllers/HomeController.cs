@@ -34,6 +34,34 @@ namespace CHS_Auction_Site.Controllers
             return View();
         }
 
+        public IActionResult CheckIn()
+        {
+            ViewData["Message"] = "Check In";
+
+            return View();
+        }
+
+        public IActionResult Payments()
+        {
+            ViewData["Message"] = "Payments";
+
+            return View();
+        }
+
+        public IActionResult NewItem()
+        {
+            ViewData["Message"] = "NewItem";
+
+            return View();
+        }
+
+        public IActionResult SilentAuction()
+        {
+            ViewData["Message"] = "silent Auction";
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -6,7 +6,7 @@
         <title>@ViewData["Title"] - CHS_Auction_Site</title>
 
         <environment include="Development">
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/superhero.css" />
             <link rel="stylesheet" href="~/css/site.css" />
         </environment>
         <environment exclude="Development">
@@ -25,14 +25,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CHS_Auction_Site</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Auction Site</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="CheckIn">Check-In</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Payments">Payments</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="NewItem">New Item</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="SilentAuction">Silent Auction</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,7 +52,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; 2018 - CHS_Auction_Site</p>
+                <p>&copy; 2018 - Auction Site</p>
             </footer>
         </div>
 
