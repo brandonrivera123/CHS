@@ -43,7 +43,7 @@ namespace CHS_Auction_Site.Controllers
 
         public IActionResult Payments()
         {
-            ViewData["Message"] = "Payments";
+            ViewData["Message"] = "Payment";
 
             return View();
         }
