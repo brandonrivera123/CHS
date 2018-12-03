@@ -22,25 +22,12 @@ namespace CHS_Auction_Site.Controllers
             return View();
         }
 
-        //public IActionResult Contact()
-        //{
-        //    ViewData["Message"] = "Your contact page.";
-        //    return View();
-        //}
-
-        //private IContactRepo repository;
-        //public HomeController(IContactRepo repo)
-        //{
-        //    repository = repo;
-        //}
-        //public ViewResult Contact() => View(repository.Contacts);
-
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult CheckIn()
+        public IActionResult Register()
         {
             ViewData["Message"] = "Check In";
 
@@ -61,13 +48,19 @@ namespace CHS_Auction_Site.Controllers
             return View();
         }
 
-        public IActionResult SilentAuction()
+        public IActionResult Event()
         {
-            ViewData["Message"] = "silent Auction";
+            ViewData["Message"] = "Event";
 
             return View();
         }
 
+        public IActionResult EventItems()
+        {
+            ViewData["Message"] = "Event Items";
+
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
