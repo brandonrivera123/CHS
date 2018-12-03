@@ -22,12 +22,18 @@ namespace CHS_Auction_Site.Controllers
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+        //public IActionResult Contact()
+        //{
+        //    ViewData["Message"] = "Your contact page.";
+        //    return View();
+        //}
 
-            return View();
-        }
+        //private IContactRepo repository;
+        //public HomeController(IContactRepo repo)
+        //{
+        //    repository = repo;
+        //}
+        //public ViewResult Contact() => View(repository.Contacts);
 
         public IActionResult Privacy()
         {
@@ -61,6 +67,7 @@ namespace CHS_Auction_Site.Controllers
 
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
