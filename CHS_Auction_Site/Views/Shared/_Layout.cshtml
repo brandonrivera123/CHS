@@ -33,20 +33,28 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Auction Site</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Contacts" asp-action="Contact">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Payments">Payments</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="NewItem">New Item</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Event">Events</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+					<ul class="nav navbar-nav">
+						<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+						<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+						<li><a asp-area="" asp-controller="Contacts" asp-action="Contact">Contact</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
+								<li><a asp-area="" asp-controller="Home" asp-action="Payments">Payments</a></li>
+								<li><a asp-area="" asp-controller="Home" asp-action="NewItem">New Item</a></li>
+								<li><a asp-area="" asp-controller="Home" asp-action="Event">Events</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Guest<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a asp-area="" asp-controller="Home" asp-action="CheckIn">Check In</a></li>
+								<li><a asp-area="" asp-controller="Home" asp-action="Event">Events</a></li>
+								<li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
+							</ul>
+						</li>
+					</ul>
                 </div>
             </div>
         </nav>
