@@ -63,10 +63,10 @@ namespace CHS_Auction_Site.Controllers
         }
 
 		public IActionResult CheckIn()
-		{
-			ViewData["Message"] = "Check In2";
+        {
+            ViewData["Message"] = "Check In";
 
-			return View();
+            return View();
 		}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
