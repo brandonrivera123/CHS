@@ -5,4 +5,4 @@ To-Do:
 - EH email + required
 - EH phone (int only)
 - ajax: price
--
+- set the email but not name
