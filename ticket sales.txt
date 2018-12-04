@@ -1,1 +1,8 @@
 To-Do:
+- error handling (EH)
+- EH first name + required
+- EH Last name + r 
+- EH email + required
+- EH phone (int only)
+- ajax: price
+-
