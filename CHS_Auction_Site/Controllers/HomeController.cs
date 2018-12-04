@@ -64,7 +64,7 @@ namespace CHS_Auction_Site.Controllers
 
 		public IActionResult CheckIn()
 		{
-			ViewData["Message"] = "Check In";
+			ViewData["Message"] = "Check In2";
 
 			return View();
 		}
