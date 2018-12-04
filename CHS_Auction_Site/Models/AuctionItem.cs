@@ -11,9 +11,12 @@ namespace CHS_Auction_Site.Models
     public class AuctionItem
     {
         public int auctionItemID { get; set; }
+        public int auctionPackageID { get; set; }
         public string item { get; set; }
+        public string package { get; set; }
         public string imageID { get; set; }
-        public int salePrice { get; set; }
+        public int startingPrice { get; set; }
+        public int incrementPrice { get; set; }
         public int quantity { get; set; }
         public string description { get; set; }
         public string category { get; set; }
