@@ -12,6 +12,9 @@ namespace CHS_Auction_Site.Models
     {
         public int auctionID { get; set; }
         public string auctionType { get; set; }
+        public string auctionLocation { get; set; }
+        public string auctionTime { get; set; }
+        public string auctionDate { get; set; }
 
         private readonly RequestDelegate _next;
 
