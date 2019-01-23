@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Models\Hello.cs" />
+    <Compile Remove="Controllers\testController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contacts\" />
