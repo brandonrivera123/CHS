@@ -1,0 +1,83 @@
+﻿@model IEnumerable<CHS_Auction_Site.Models.Guests>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuestZip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Organization)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestZip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization.OrganizationName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GuestId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GuestId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GuestId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
