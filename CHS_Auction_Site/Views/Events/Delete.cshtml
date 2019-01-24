@@ -1,0 +1,45 @@
+﻿@model CHS_Auction_Site.Models.Events
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Events</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventLocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventLocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventTicketNum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventTicketNum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventStart)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventStart)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventEnd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventEnd)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EventId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
