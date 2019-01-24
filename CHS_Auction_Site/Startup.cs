@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CHS_Auction_Site.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CHS_Auction_Site
 {
@@ -34,6 +35,8 @@ namespace CHS_Auction_Site
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var connection = @"Server=tcp:chsebas.database.windows.net,1433;Initial Catalog=EventBasedAuctionSoftware;Persist Security Info=False;User ID=arsunis;Password=SeniorProject18;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            services.AddDbContext<EventBasedAuctionSoftwareContext>(options => options.UseSqlServer(connection));
 
         }
 

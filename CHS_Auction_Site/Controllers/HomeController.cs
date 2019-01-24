@@ -13,24 +13,24 @@ namespace CHS_Auction_Site.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfiguration configuration;
+        //private readonly IConfiguration configuration;
 
-        public HomeController(IConfiguration config)
-        {
-            this.configuration = config;
-        }
+        //public HomeController(IConfiguration config)
+        //{
+            //this.configuration = config;
+        //}
 
         public IActionResult Index()
         {
-            string connectionstring = configuration.GetConnectionString("AuctionDatabase");
+            //string connectionstring = configuration.GetConnectionString("AuctionDatabase");
 
-            SqlConnection connection = new SqlConnection(connectionstring);
+            //SqlConnection connection = new SqlConnection(connectionstring);
 
-            connection.Open();
-            SqlCommand com = new SqlCommand("Select count(*) from Admins", connection);
-            var ha = (int)com.ExecuteScalar();
-            ViewData["Total"] = ha;
-            connection.Close();
+            //connection.Open();
+            //SqlCommand com = new SqlCommand("Select count(*) from Admins", connection);
+            //var ha = (int)com.ExecuteScalar();
+            //ViewData["Total"] = ha;
+            //connection.Close();
 
             return View();
         }

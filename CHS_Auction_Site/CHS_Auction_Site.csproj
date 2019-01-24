@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.NETCore.DotNetHost" Version="2.1.6" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
   </ItemGroup>
     
   <ItemGroup>
@@ -30,6 +30,7 @@
   <ItemGroup>
     <Compile Remove="Models\Hello.cs" />
     <Compile Remove="Controllers\testController.cs" />
+    <Compile Remove="Models\Admins.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contacts\" />
