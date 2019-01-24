@@ -30,7 +30,6 @@
   <ItemGroup>
     <Compile Remove="Models\Hello.cs" />
     <Compile Remove="Controllers\testController.cs" />
-    <Compile Remove="Models\Admins.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Contacts\" />
