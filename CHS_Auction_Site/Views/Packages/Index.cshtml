@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CHS_Auction_Site.Models.Packages>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageStartBid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageBidIncrement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageFinalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transaction)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageStartBid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageBidIncrement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackageFinalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event.EventLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transaction.TransactionId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PackageId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PackageId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PackageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
