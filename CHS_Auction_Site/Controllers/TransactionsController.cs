@@ -47,7 +47,7 @@ namespace CHS_Auction_Site.Controllers
         // GET: Transactions/Create
         public IActionResult Create()
         {
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress");
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", transactions.GuestId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", transactions.GuestId);
             return View(transactions);
         }
 
@@ -81,7 +81,7 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", transactions.GuestId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", transactions.GuestId);
             return View(transactions);
         }
 
@@ -117,7 +117,7 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", transactions.GuestId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", transactions.GuestId);
             return View(transactions);
         }
 
