@@ -48,8 +48,8 @@ namespace CHS_Auction_Site.Controllers
         // GET: Items/Create
         public IActionResult Create()
         {
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress");
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageDescription");
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageDescription", items.PackageId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
         }
 
@@ -84,8 +84,8 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageDescription", items.PackageId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
         }
 
@@ -121,8 +121,8 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageDescription", items.PackageId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
         }
 
