@@ -7,36 +7,51 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Events</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventLocation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventLocation)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventTicketNum)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventTicketNum)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventStart)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventStart)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventEnd)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventEnd)
-        </dd>
-    </dl>
+    <a asp-route="Index">Back to List</a>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a> |
+    <h2>Event</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventLocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventTicketNum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventStart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventEnd)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.EventLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.EventTicketNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.EventStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.EventEnd)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <h2>Packages</h2>
+</div>
+<div>
     <a asp-action="Index">Back to List</a>
 </div>
