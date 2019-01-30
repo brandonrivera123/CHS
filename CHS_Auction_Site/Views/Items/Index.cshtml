@@ -4,164 +4,68 @@
     ViewData["Title"] = "Index";
 }
 
-@*<h2>Index</h2>
+<h2>Index</h2>
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemDescription)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemCategory)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemImage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ItemValue)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Guest)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Package)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemCategory)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemImage)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemValue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Guest.GuestId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Package.PackageId)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-@{
-    ViewBag.Title = "Event Items";
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Guest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.GuestId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Package.PackageId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
+            </td>
+        </tr>
 }
-<h2>Item Log</h2>
-
-<div class="row">
-    <div class="col-lg-3">
-        <div class="form-group">
-            <input class="form-control" id="focusedInput" onkeyup="myFunction()" type="text" placeholder="Search">
-        </div>
-    </div>
-    <div class="col-lg-1">
-        <div class="btn-group">
-            <a href="#" class="btn btn-warning dropdown-toggle" id="Filter" data-toggle="dropdown">Filter <span class="caret"></span></a>
-            <ul class="dropdown-menu" id="selectedvalue">
-                <li><a href="#">Leisure</a></li>
-                <li><a href="#">Artwork</a></li>
-                <li><a href="#">Clothing</a></li>
-                <li><a href="#">Other</a></li>
-                <li class="divider"></li>
-                <li><a href="#" id="All">All</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-lg-1">
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
-    </div>
-</div>
-
-
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="@Html.DisplayFor(modelItem => item.ItemImage)">
-                <div class="caption">
-                    <span class="label label-success">Individual</span><span class="badge">1</span>
-                    <h3>@Html.DisplayFor(modelItem => item.ItemName)</h3>
-                    <p style="height:45px; overflow:hidden">@Html.DisplayFor(modelItem => item.ItemDescription)</p>
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</a>
-                    <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal">View Details</a>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="viewDetailModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Item No. 1</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <form class="form-horizontal">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <div class="thumbnail">
-                                            <img src="@Html.DisplayFor(modelItem => item.ItemImage)">
-                                        </div>
-                                    </div>
-
-                                    <hr />
-                                    <p class="col-lg-3">Item Name: </p>
-                                    <p class="col-lg-9">@Html.DisplayFor(modelItem => item.ItemName)</p>
-
-                                    <p class="col-lg-3">Category: </p>
-                                    <p class="col-lg-9">@Html.DisplayFor(modelItem => item.ItemCategory)</p>
-
-                                    <p class="col-lg-3">Description: </p>
-                                    <p class="col-lg-9">@Html.DisplayFor(modelItem => item.ItemDescription)</p>
-
-                                    <p class="col-lg-3">Event Type: </p>
-                                    <p class="col-lg-9">Silent Auction</p>
-
-                                    <p class="col-lg-3">Event Date: </p>
-                                    <p class="col-lg-9">3/19/2018</p>
-
-                                    <p class="col-lg-3">Starting Bid: </p>
-                                    <p class="col-lg-9">@Html.DisplayFor(modelItem => item.ItemValue)</p>
-
-                                    <p class="col-lg-3">Bid Increment: </p>
-                                    <p class="col-lg-9">$2.00</p>
-
-
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+    </tbody>
+</table>
