@@ -1,4 +1,4 @@
-﻿@model CHS_Auction_Site.Models.Events
+﻿@model CHS_Auction_Site.Models.EventDetailsVM
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <a asp-route="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 <div>
     <h2>Event</h2>
@@ -15,16 +15,16 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.EventLocation)
+                    @Html.DisplayNameFor(model => model.Events.EventLocation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EventTicketNum)
+                    @Html.DisplayNameFor(model => model.Events.EventTicketNum)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EventStart)
+                    @Html.DisplayNameFor(model => model.Events.EventStart)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EventEnd)
+                    @Html.DisplayNameFor(model => model.Events.EventEnd)
                 </th>
                 <th></th>
             </tr>
@@ -32,25 +32,80 @@
         <tbody>
             <tr>
                 <td>
-                    @Html.DisplayFor(model => model.EventLocation)
+                    @Html.DisplayFor(model => model.Events.EventLocation)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.EventTicketNum)
+                    @Html.DisplayFor(model => model.Events.EventTicketNum)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.EventStart)
+                    @Html.DisplayFor(model => model.Events.EventStart)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.EventEnd)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@Model.EventId">Edit</a>
+                    @Html.DisplayFor(model => model.Events.EventEnd)
                 </td>
             </tr>
         </tbody>
     </table>
     <hr />
     <h2>Packages</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.PackageId)*@
+                    Package ID
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.PackageDescription)*@
+                    Package Description
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.PackageStartBid)*@
+                    Package Starting Bid
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.PackageBidIncrement)*@
+                    Package Bid Increment
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.PackageFinalPrice)*@
+                    Package Final Price
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Packages.EventId)*@
+                    Package Event ID
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Packages.Where(m => m.EventId == Model.Events.EventId))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.PackageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.PackageDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.PackageStartBid)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.PackageBidIncrement)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.PackageFinalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.EventId)
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">Details</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
