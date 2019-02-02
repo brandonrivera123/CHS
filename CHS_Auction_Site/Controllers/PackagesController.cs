@@ -42,7 +42,19 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
-            return View(packages);
+            var items = await _context.Items.ToListAsync();
+            if (items == null)
+            {
+                return NotFound();
+            }
+
+            var packageItems = new PackageDetailsVM
+            {
+                Packages = packages,
+                Items = items
+            };
+
+            return View(packageItems);
         }
 
         // GET: Packages/Create
