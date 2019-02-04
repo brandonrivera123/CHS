@@ -48,58 +48,120 @@
     </table>
     <hr />
     <h2>Packages</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Package ID
-                </th>
-                <th>
-                    Package Description
-                </th>
-                <th>
-                    Package Starting Bid
-                </th>
-                <th>
-                    Package Bid Increment
-                </th>
-                <th>
-                    Package Final Price
-                </th>
-                <th>
-                    Package Event ID
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Packages.Where(m => m.EventId == Model.Events.EventId))
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.PackageId)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.PackageDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.PackageStartBid)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.PackageBidIncrement)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.PackageFinalPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.EventId)
-                </td>
-                <td>
-                    <a asp-area="" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">Details</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Package ID
+                    </th>
+                    <th>
+                        Package Description
+                    </th>
+                    <th>
+                        Package Starting Bid
+                    </th>
+                    <th>
+                        Package Bid Increment
+                    </th>
+                    <th>
+                        Package Final Price
+                    </th>
+                    <th>
+                        Package Event ID
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Packages.Where(m => m.EventId == Model.Events.EventId))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.PackageId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.PackageDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.PackageStartBid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.PackageBidIncrement)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.PackageFinalPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.EventId)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">Details</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>*@
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <input class="form-control" id="focusedInput" onkeyup="myFunction()" type="text" placeholder="Search">
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model.Packages.Where(m => m.EventId == Model.Events.EventId))
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>@Html.DisplayFor(model => item.PackageId)</h3>
+                        <p style="height:45px; overflow:hidden">@Html.DisplayFor(model => item.PackageDescription)</p>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</a>
+                        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="viewDetailModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Item No. @Html.DisplayFor(model => item.PackageId)</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <p class="col-lg-3">Description: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageDescription)</p>
+
+                                        <p class="col-lg-3">Start Bid: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageStartBid)</p>
+
+                                        <p class="col-lg-3">Bid Increment: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageBidIncrement)</p>
+
+                                        <p class="col-lg-3">Final Price: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageFinalPrice)</p>
+
+                                        <p class="col-lg-3">Event: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.EventId)</p>
+
+                                        <p class="col-lg-3">Transaction: </p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.TransactionId)</p>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
