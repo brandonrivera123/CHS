@@ -7,52 +7,25 @@
 <h2>Events</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.EventLocation)*@
-                Event Location
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.EventTicketNum)*@
-                @* Available? or Total number of tickets? *@
-                Total Number of Tickets
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.EventStart)*@
-                Event Start 
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.EventEnd)*@
-                Event End 
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventLocation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventTicketNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventEnd)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>@Html.DisplayFor(model => item.EventLocation)</h3>
+                    <hr />
+                    <p># of Tickets: @Html.DisplayFor(model => item.EventTicketNum)</p>
+                    <p>Start Time: @Html.DisplayFor(model => item.EventStart)</p>
+                    <p>End Time: @Html.DisplayFor(model => item.EventEnd)</p>
+                    <hr />
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.EventId">Edit</a>
+                    <a class="btn btn-default" asp-action="Details" asp-route-id="@item.EventId">Details</a>
+                    <a class="btn btn-default" asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
