@@ -21,8 +21,14 @@ namespace CHS_Auction_Site.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            var eventBasedAuctionSoftwareContext = _context.Items.Include(i => i.Guest).Include(i => i.Package);
-            return View(await eventBasedAuctionSoftwareContext.ToListAsync());
+            var items = _context.Items.Include(i => i.Guest).Include(i => i.Package);
+            var packages = await _context.Packages.ToListAsync();
+            if (packages == null)
+            {
+                return NotFound();
+            }
+            var itemsPackages = new ItemPackagesVM { items = items, packages = packages };
+            return View(itemsPackages);
         }
 
         // GET: Items/Details/5

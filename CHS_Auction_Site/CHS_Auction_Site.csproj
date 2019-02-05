@@ -30,5 +30,6 @@
   <ItemGroup>
     <Compile Remove="Models\Hello.cs" />
     <Compile Remove="Controllers\testController.cs" />
+    <Compile Remove="Models\ItemsPackagesVM.cs" />
   </ItemGroup>
 </Project>
