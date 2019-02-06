@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="col-lg-1">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#createPackageModal">Add</a>
         </div>
     </div>
 
@@ -66,7 +66,7 @@
                         <p style="height:45px; overflow:hidden">@Html.DisplayFor(model => item.PackageDescription)</p>
                         <hr />
                         @*<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</a>*@
-                        <a class="btn btn-primary" asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">Edit</a>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editPackageModal-@item.PackageId">Edit</a>
                         <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal-@item.PackageId">View Details</a>
                         <a class="btn btn-default" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">View Items</a>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Item No. @Html.DisplayFor(model => item.PackageId)</h4>
+                            <h4 class="modal-title">Package No. @Html.DisplayFor(model => item.PackageId)</h4>
                         </div>
                         <div class="modal-body">
                             <div>
@@ -108,9 +108,117 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="editPackageModal-@item.PackageId" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Package No. @Html.DisplayFor(model => item.PackageId)</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <form asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="PackageId" value="@item.PackageId"/>
+                                    <div class="form-group">
+                                        <label asp-for="@item.PackageDescription" class="control-label"></label>
+                                        <input asp-for="PackageDescription" class="form-control" value="@item.PackageDescription"/>
+                                        <span asp-validation-for="@item.PackageDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.PackageStartBid" class="control-label"></label>
+                                        <input asp-for="PackageStartBid" class="form-control" value="@item.PackageStartBid"/>
+                                        <span asp-validation-for="@item.PackageStartBid" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.PackageBidIncrement" class="control-label"></label>
+                                        <input asp-for="PackageBidIncrement" class="form-control" value="@item.PackageBidIncrement"/>
+                                        <span asp-validation-for="@item.PackageBidIncrement" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.PackageFinalPrice" class="control-label"></label>
+                                        <input asp-for="PackageFinalPrice" class="form-control" value="@item.PackageFinalPrice"/>
+                                        <span asp-validation-for="@item.PackageFinalPrice" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.EventId" class="control-label"></label>
+                                        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId">
+                                            <option value="@Model.Events.EventId" selected>@Html.DisplayFor(model => Model.Events.EventLocation)</option>
+                                        </select>
+                                        <span asp-validation-for="@item.EventId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.TransactionId" class="control-label"></label>
+                                        <select asp-for="TransactionId" class="form-control" asp-items="ViewBag.TransactionId">
+                                            <option value="@Model.TransactionId" selected>@Html.DisplayFor(model => Model.TransactionId)</option>
+                                        </select>
+                                        <span asp-validation-for="@item.TransactionId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     </div>
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="modal fade" id="createPackageModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create a new Package</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form asp-controller="Packages" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="PackageDescription" class="control-label"></label>
+                            <input asp-for="PackageDescription" class="form-control" />
+                            <span asp-validation-for="PackageDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PackageStartBid" class="control-label"></label>
+                            <input asp-for="PackageStartBid" class="form-control" />
+                            <span asp-validation-for="PackageStartBid" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PackageBidIncrement" class="control-label"></label>
+                            <input asp-for="PackageBidIncrement" class="form-control" />
+                            <span asp-validation-for="PackageBidIncrement" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PackageFinalPrice" class="control-label"></label>
+                            <input asp-for="PackageFinalPrice" class="form-control" />
+                            <span asp-validation-for="PackageFinalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventId" class="control-label"></label>
+                            <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TransactionId" class="control-label"></label>
+                            <select asp-for="TransactionId" class="form-control" asp-items="ViewBag.TransactionId">
+                                <option value="" selected>None</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

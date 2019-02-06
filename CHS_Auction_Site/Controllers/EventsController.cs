@@ -53,11 +53,17 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
+            var packageLocations = new Packages();
+
             var eventPackages = new EventDetailsVM
             {
                 Events = events,
+                GetPackageLocations = packageLocations,
                 Packages = packages
             };
+
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packageLocations.EventId);
+            ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packageLocations.TransactionId);
 
             return View(eventPackages);
         }
