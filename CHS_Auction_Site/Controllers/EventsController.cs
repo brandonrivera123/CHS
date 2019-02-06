@@ -21,7 +21,15 @@ namespace CHS_Auction_Site.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Events.ToListAsync());
+            var currentEvents = await _context.Events.ToListAsync();
+            var editEvent = new Events();
+
+            var editEventVM = new EditEventVM
+            {
+                CurrentEvents = currentEvents
+            };
+
+            return View(editEventVM);
         }
 
         // GET: Events/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CHS_Auction_Site.Models.Events>
+﻿@model CHS_Auction_Site.Models.EditEventVM
 
 @{
     ViewData["Title"] = "Events";
@@ -10,7 +10,7 @@
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#createEventModal">Create New</a>
 </p>
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var item in Model.CurrentEvents)
     {
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
@@ -39,31 +39,31 @@
                         <div>
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.EventId)
+                                    @Html.DisplayNameFor(model => item.EventId)
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventId)
                                 </dd>
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.EventLocation)
+                                    @Html.DisplayNameFor(model => item.EventLocation)
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventLocation)
                                 </dd>
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.EventTicketNum)
+                                    @Html.DisplayNameFor(model => item.EventTicketNum)
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventTicketNum)
                                 </dd>
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.EventStart)
+                                    @Html.DisplayNameFor(model => item.EventStart)
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventStart)
                                 </dd>
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.EventEnd)
+                                    @Html.DisplayNameFor(model => item.EventEnd)
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventEnd)
@@ -90,31 +90,31 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <form asp-action="Edit">
+                            <form asp-action="Edit" asp-route-id="@item.EventId">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <input type="hidden" asp-for="@item.EventId" />
+                                <input type="hidden" asp-for="EventId" value="@item.EventId"/>
                                 <div class="form-group">
                                     <label asp-for="@item.EventLocation" class="control-label"></label>
-                                    <input asp-for="@item.EventLocation" class="form-control" />
+                                    <input asp-for="EventLocation" class="form-control" value="@item.EventLocation" />
                                     <span asp-validation-for="@item.EventLocation" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="@item.EventTicketNum" class="control-label"></label>
-                                    <input asp-for="@item.EventTicketNum" class="form-control" />
+                                    <input asp-for="EventTicketNum" class="form-control" value="@item.EventTicketNum"/>
                                     <span asp-validation-for="@item.EventTicketNum" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="@item.EventStart" class="control-label"></label>
-                                    <input asp-for="@item.EventStart" class="form-control" />
+                                    <input asp-for="EventStart" class="form-control" type="datetime" value="@item.EventStart"/>
                                     <span asp-validation-for="@item.EventStart" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="@item.EventEnd" class="control-label"></label>
-                                    <input asp-for="@item.EventEnd" class="form-control" />
+                                    <input asp-for="EventEnd" class="form-control" type="datetime" value="@item.EventEnd"/>
                                     <span asp-validation-for="@item.EventEnd" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <input type="submit" value="Save" class="btn btn-primary" />
                                 </div>
                             </form>
                         </div>
@@ -123,4 +123,45 @@
             </div>
         </div>
     }
+</div>
+
+<div class="modal fade" id="createEventModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create a new Event</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="EventLocation" class="control-label"></label>
+                            <input asp-for="EventLocation" class="form-control" />
+                            <span asp-validation-for="EventLocation" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventTicketNum" class="control-label"></label>
+                            <input asp-for="EventTicketNum" class="form-control" />
+                            <span asp-validation-for="EventTicketNum" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventStart" class="control-label"></label>
+                            <input asp-for="EventStart" class="form-control" />
+                            <span asp-validation-for="EventStart" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventEnd" class="control-label"></label>
+                            <input asp-for="EventEnd" class="form-control" />
+                            <span asp-validation-for="EventEnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
