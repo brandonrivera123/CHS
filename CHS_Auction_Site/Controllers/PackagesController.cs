@@ -54,6 +54,9 @@ namespace CHS_Auction_Site.Controllers
                 Items = items
             };
 
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
+
             return View(packageItems);
         }
 

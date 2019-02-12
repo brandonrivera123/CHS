@@ -96,8 +96,7 @@
                     <div class="caption">
                         <h3>@Html.DisplayFor(model => item.ItemName)</h3>
                         <p style="height:45px; overflow:hidden">@Html.DisplayFor(model => item.ItemDescription)</p>
-                        @*<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</a>*@
-                        <a class="btn btn-primary" asp-controller="Items" asp-action="Edit" asp-route-id="@item.ItemId">Edit</a>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal-@item.ItemId">Edit</a>
                         <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal-@item.ItemId">View Details</a>
                     </div>
                 </div>
@@ -140,6 +139,64 @@
                                     </fieldset>
                                 </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editItemModal-@item.ItemId" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Item No. @item.ItemId</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-controller="Items" asp-action="Edit" asp-route-id="@item.ItemId">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="ItemId" value="@item.ItemId"/>
+                                <div class="form-group">
+                                    <label asp-for="@item.ItemName" class="control-label"></label>
+                                    <input asp-for="ItemName" class="form-control" value="@item.ItemName"/>
+                                    <span asp-validation-for="@item.ItemName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.ItemDescription" class="control-label"></label>
+                                    <input asp-for="ItemDescription" class="form-control" value="@item.ItemDescription"/>
+                                    <span asp-validation-for="@item.ItemDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.ItemCategory" class="control-label"></label>
+                                    <input asp-for="ItemCategory" class="form-control" value="@item.ItemCategory"/>
+                                    <span asp-validation-for="@item.ItemCategory" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.ItemImage" class="control-label"></label>
+                                    <input asp-for="ItemImage" class="form-control" value="@item.ItemImage"/>
+                                    <span asp-validation-for="@item.ItemImage" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.ItemValue" class="control-label"></label>
+                                    <input asp-for="ItemValue" class="form-control" value="@item.ItemValue"/>
+                                    <span asp-validation-for="@item.ItemValue" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.PackageId" class="control-label"></label>
+                                    <select asp-for="PackageId" class="form-control" asp-items="ViewBag.PackageId">
+                                        <option value="@Model.Packages.PackageId" selected>@Html.DisplayFor(model => Model.Packages.PackageId)</option>
+                                    </select>
+                                    <span asp-validation-for="@item.PackageId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.GuestId" class="control-label"></label>
+                                    <select asp-for="GuestId" class="form-control" asp-items="ViewBag.GuestId">
+                                        <option value="@item.GuestId" selected>@Html.DisplayFor(model => item.GuestId)</option>
+                                    </select>
+                                    <span asp-validation-for="@item.GuestId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

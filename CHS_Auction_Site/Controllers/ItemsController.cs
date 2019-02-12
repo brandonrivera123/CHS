@@ -113,6 +113,8 @@ namespace CHS_Auction_Site.Controllers
                 {
                     _context.Update(items);
                     await _context.SaveChangesAsync();
+                    //ViewData["itemId"] = id;
+                    //return View("TEST", items);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
