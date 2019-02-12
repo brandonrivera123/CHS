@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="col-lg-1">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addItemModal">Add</a>
         </div>
     </div>
 
@@ -207,4 +207,56 @@
 <div>
     <a asp-action="Index">Go to Packages Page</a> |
     <a asp-controller="Events" asp-action="Details" asp-route-id="@Model.Packages.EventId">Go to Event Detail Page</a>
+</div>
+
+<div class="modal fade" id="addItemModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a New Item</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Items" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ItemName" class="control-label"></label>
+                        <input asp-for="ItemName" class="form-control" />
+                        <span asp-validation-for="ItemName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ItemDescription" class="control-label"></label>
+                        <input asp-for="ItemDescription" class="form-control" />
+                        <span asp-validation-for="ItemDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ItemCategory" class="control-label"></label>
+                        <input asp-for="ItemCategory" class="form-control" />
+                        <span asp-validation-for="ItemCategory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ItemImage" class="control-label"></label>
+                        <input asp-for="ItemImage" class="form-control" />
+                        <span asp-validation-for="ItemImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ItemValue" class="control-label"></label>
+                        <input asp-for="ItemValue" class="form-control" />
+                        <span asp-validation-for="ItemValue" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PackageId" class="control-label"></label>
+                        <select asp-for="PackageId" class="form-control" asp-items="ViewBag.PackageId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuestId" class="control-label"></label>
+                        <select asp-for="GuestId" class="form-control" asp-items="ViewBag.GuestId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
