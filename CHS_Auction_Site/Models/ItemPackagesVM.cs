@@ -11,6 +11,15 @@ namespace CHS_Auction_Site.Models
     {
         public IEnumerable<Items> items { get; set; }
         public IEnumerable<Packages> packages { get; set; }
+
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
+        public string ItemCategory { get; set; }
+        public string ItemImage { get; set; }
+        public int ItemValue { get; set; }
+        public int? PackageId { get; set; }
+        public int GuestId { get; set; }
     }
 
 }

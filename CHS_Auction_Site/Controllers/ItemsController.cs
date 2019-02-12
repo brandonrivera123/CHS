@@ -28,6 +28,8 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
             var itemsPackages = new ItemPackagesVM { items = items, packages = packages };
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", itemsPackages.GuestId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", itemsPackages.PackageId);
             return View(itemsPackages);
         }
 
