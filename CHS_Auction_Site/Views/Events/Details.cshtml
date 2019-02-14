@@ -65,7 +65,6 @@
                         <h3>@Html.DisplayFor(model => item.PackageId)</h3>
                         <p style="height:45px; overflow:hidden">@Html.DisplayFor(model => item.PackageDescription)</p>
                         <hr />
-                        @*<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</a>*@
                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editPackageModal-@item.PackageId">Edit</a>
                         <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal-@item.PackageId">View Details</a>
                         <a class="btn btn-default" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">View Items</a>
@@ -94,7 +93,7 @@
                                         <p class="col-lg-9">@Html.DisplayFor(model => item.PackageBidIncrement)</p>
 
                                         <p class="col-lg-3">Final Price: </p>
-                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageFinalPrice)</p>
+                                        <p class="col-lg-9">@Html.DisplayFor(model => item.PackageFinalPrice)&nbsp;</p>
 
                                         <p class="col-lg-3">Event: </p>
                                         <p class="col-lg-9">@Html.DisplayFor(model => item.EventId)</p>
