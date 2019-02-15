@@ -2,8 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 <div class="jumbotron">
-    <h1>Welcome</h1>
-    <h3>Total : @ViewData["Total"]</h3>
+    <h1>Dashboard</h1>
     <p class="lead">CHS Auction Site</p>
     <p><a href="https://www.chsfl.org/history/" class="btn btn-primary btn-lg">About Us</a></p>
 </div>
@@ -13,7 +12,7 @@
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <h2>Silent Auction Items</h2>
         <p>
             Here you can view all silent auction items.
@@ -24,10 +23,10 @@
         <h2>Live Auctions</h2>
         <p>Here you can view live auction items</p>
         <p><a class="btn btn-default" href="./Home/Event">Learn more &raquo;</a></p>
-    </div>
+    </div>*@
     <div class="col-md-4">
-        <h2>Other Events</h2>
-        <p>Here you can view other events going on.</p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+        <h2>All Events</h2>
+        <p>Here you can view all events going on.</p>
+        <p><a class="btn btn-default" href="./Events">Click Here &raquo;</a></p>
     </div>
 </div>
