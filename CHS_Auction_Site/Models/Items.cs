@@ -8,7 +8,7 @@ namespace CHS_Auction_Site.Models
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
-        public string ItemCategory { get; set; }
+        public int? CategoryId { get; set; }
         public string ItemImage { get; set; }
         public int ItemValue { get; set; }
         public int? PackageId { get; set; }
@@ -16,5 +16,6 @@ namespace CHS_Auction_Site.Models
 
         public Guests Guest { get; set; }
         public Packages Package { get; set; }
+        public Categories Category { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace CHS_Auction_Site.Models
         }
 
         public virtual DbSet<Admins> Admins { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Guests> Guests { get; set; }
         public virtual DbSet<Items> Items { get; set; }
@@ -53,6 +54,19 @@ namespace CHS_Auction_Site.Models
                 entity.Property(e => e.AdminPassword)
                     .IsRequired()
                     .HasColumnName("Admin_Password")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Categories>(entity =>
+            {
+                entity.HasKey(e => e.CategoryId);
+
+                entity.Property(e => e.CategoryId).HasColumnName("Category_ID");
+
+                entity.Property(e => e.CategoryName)
+                    .IsRequired()
+                    .HasColumnName("Category_Name")
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
@@ -146,11 +160,7 @@ namespace CHS_Auction_Site.Models
 
                 entity.Property(e => e.GuestId).HasColumnName("Guest_ID");
 
-                entity.Property(e => e.ItemCategory)
-                    .IsRequired()
-                    .HasColumnName("Item_Category")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.CategoryId).HasColumnName("Category_ID");
 
                 entity.Property(e => e.ItemDescription)
                     .IsRequired()
@@ -184,6 +194,11 @@ namespace CHS_Auction_Site.Models
                     .WithMany(p => p.Items)
                     .HasForeignKey(d => d.PackageId)
                     .HasConstraintName("FK__Items__Package_I__72C60C4A");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Items)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK__Items__Category___160F4887");
             });
 
             modelBuilder.Entity<Organizations>(entity =>

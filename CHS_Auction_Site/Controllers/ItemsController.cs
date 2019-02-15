@@ -28,6 +28,7 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
             var itemsPackages = new ItemPackagesVM { items = items, packages = packages };
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", itemsPackages.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", itemsPackages.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", itemsPackages.PackageId);
             return View(itemsPackages);
@@ -56,6 +57,7 @@ namespace CHS_Auction_Site.Controllers
         // GET: Items/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
             return View();
@@ -66,7 +68,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemId,ItemName,ItemDescription,ItemCategory,ItemImage,ItemValue,PackageId,GuestId")] Items items)
+        public async Task<IActionResult> Create([Bind("ItemId,ItemName,ItemDescription,CategoryId,ItemImage,ItemValue,PackageId,GuestId")] Items items)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +76,7 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
@@ -92,6 +95,7 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
@@ -102,7 +106,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,ItemName,ItemDescription,ItemCategory,ItemImage,ItemValue,PackageId,GuestId")] Items items)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemId,ItemName,ItemDescription,CategoryId,ItemImage,ItemValue,PackageId,GuestId")] Items items)
         {
             if (id != items.ItemId)
             {
@@ -131,6 +135,7 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
             return View(items);
@@ -145,6 +150,7 @@ namespace CHS_Auction_Site.Controllers
             }
 
             var items = await _context.Items
+                .Include(i => i.Category)
                 .Include(i => i.Guest)
                 .Include(i => i.Package)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
