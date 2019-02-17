@@ -10,8 +10,10 @@ namespace CHS_Auction_Site.Models
         public IEnumerable<Events> CurrentEvents { get; set; }
 
         public int EventId { get; set; }
+        public string EventName { get; set; }
         public string EventLocation { get; set; }
         public int EventTicketNum { get; set; }
+        public int EventGoal { get; set; }
         public DateTime EventStart { get; set; }
         public DateTime EventEnd { get; set; }
     }

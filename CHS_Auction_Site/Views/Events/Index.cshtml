@@ -15,9 +15,11 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>@Html.DisplayFor(model => item.EventLocation)</h3>
+                    <h3>@Html.DisplayFor(model => item.EventName)</h3>
                     <hr />
+                    <p>Location: @Html.DisplayFor(model => item.EventLocation)</p>
                     <p># of Tickets: @Html.DisplayFor(model => item.EventTicketNum)</p>
+                    <p>Revenue Goal: @Html.DisplayFor(model => item.EventGoal)</p>
                     <p>Start Time: @Html.DisplayFor(model => item.EventStart)</p>
                     <p>End Time: @Html.DisplayFor(model => item.EventEnd)</p>
                     <hr />
@@ -45,6 +47,12 @@
                                     @Html.DisplayFor(model => item.EventId)
                                 </dd>
                                 <dt>
+                                    @Html.DisplayNameFor(model => item.EventName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => item.EventName)
+                                </dd>
+                                <dt>
                                     @Html.DisplayNameFor(model => item.EventLocation)
                                 </dt>
                                 <dd>
@@ -55,6 +63,12 @@
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventTicketNum)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => item.EventGoal)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => item.EventGoal)
                                 </dd>
                                 <dt>
                                     @Html.DisplayNameFor(model => item.EventStart)
@@ -94,6 +108,11 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="EventId" value="@item.EventId"/>
                                 <div class="form-group">
+                                    <label asp-for="@item.EventName" class="control-label"></label>
+                                    <input asp-for="EventName" class="form-control" value="@item.EventName" />
+                                    <span asp-validation-for="@item.EventName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
                                     <label asp-for="@item.EventLocation" class="control-label"></label>
                                     <input asp-for="EventLocation" class="form-control" value="@item.EventLocation" />
                                     <span asp-validation-for="@item.EventLocation" class="text-danger"></span>
@@ -102,6 +121,11 @@
                                     <label asp-for="@item.EventTicketNum" class="control-label"></label>
                                     <input asp-for="EventTicketNum" class="form-control" value="@item.EventTicketNum"/>
                                     <span asp-validation-for="@item.EventTicketNum" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.EventGoal" class="control-label"></label>
+                                    <input asp-for="EventGoal" class="form-control" value="@item.EventGoal" />
+                                    <span asp-validation-for="@item.EventGoal" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="@item.EventStart" class="control-label"></label>
@@ -137,6 +161,11 @@
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
+                            <label asp-for="EventName" class="control-label"></label>
+                            <input asp-for="EventName" class="form-control" />
+                            <span asp-validation-for="EventName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="EventLocation" class="control-label"></label>
                             <input asp-for="EventLocation" class="form-control" />
                             <span asp-validation-for="EventLocation" class="text-danger"></span>
@@ -145,6 +174,11 @@
                             <label asp-for="EventTicketNum" class="control-label"></label>
                             <input asp-for="EventTicketNum" class="form-control" />
                             <span asp-validation-for="EventTicketNum" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventGoal" class="control-label"></label>
+                            <input asp-for="EventGoal" class="form-control" />
+                            <span asp-validation-for="EventGoal" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="EventStart" class="control-label"></label>

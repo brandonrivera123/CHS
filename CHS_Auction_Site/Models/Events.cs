@@ -15,6 +15,8 @@ namespace CHS_Auction_Site.Models
         public int EventTicketNum { get; set; }
         public DateTime EventStart { get; set; }
         public DateTime EventEnd { get; set; }
+        public string EventName { get; set; }
+        public int EventGoal { get; set; }
 
         public ICollection<Packages> Packages { get; set; }
     }

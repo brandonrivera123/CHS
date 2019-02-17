@@ -92,6 +92,13 @@ namespace CHS_Auction_Site.Models
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.EventTicketNum).HasColumnName("Event_TicketNum");
+
+                entity.Property(e => e.EventName)
+                    .HasColumnName("Event_Name")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EventGoal).HasColumnName("Event_Goal");
             });
 
             modelBuilder.Entity<Guests>(entity =>

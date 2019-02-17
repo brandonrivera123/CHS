@@ -5,9 +5,9 @@
 }
 
 <div>
-    <h2>Event Details</h2>
+    <h2>@Html.DisplayFor(model => model.Events.EventName)</h2>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="thumbnail">
                 <h3>Location:</h3>
                 <div class="caption">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="thumbnail">
                 <h3># of Tickets:</h3>
                 <div class="caption">
@@ -25,7 +25,17 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <h3>Revenue Goal</h3>
+                <div class="caption">
+                    <p>@Html.DisplayFor(model => model.Events.EventGoal)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
             <div class="thumbnail">
                 <h3>Start Time:</h3>
                 <div class="caption">
@@ -34,7 +44,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <div class="thumbnail">
                 <h3>End Time:</h3>
                 <div class="caption">
