@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CHS_Auction_Site.Models.Packages>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Packages";
 }
 
-<h2>Index</h2>
+<h2>Packages</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PackageDescription)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PackageStartBid)
+                Starting Bid
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PackageBidIncrement)
+                Bid Increment
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PackageFinalPrice)
+                Final Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event)
+                Event
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Transaction)
+               Transaction
             </th>
             <th></th>
         </tr>
