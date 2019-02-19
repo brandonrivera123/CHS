@@ -21,8 +21,17 @@ namespace CHS_Auction_Site.Controllers
         // GET: Guests
         public async Task<IActionResult> Index()
         {
-            var eventBasedAuctionSoftwareContext = _context.Guests.Include(g => g.Organization);
-            return View(await eventBasedAuctionSoftwareContext.ToListAsync());
+            var eventBasedAuctionSoftwareContext = await _context.Guests.Include(g => g.Organization).ToListAsync();
+            var editGuest = new Guests();
+
+            var editGuestVM = new EditGuestVM
+            {
+                Guests = eventBasedAuctionSoftwareContext
+            };
+
+            ViewData["OrganizationId"] = new SelectList(_context.Organizations, "OrganizationId", "OrganizationName", editGuestVM.OrganizationId);
+
+            return View(editGuestVM);
         }
 
         // GET: Guests/Details/5
