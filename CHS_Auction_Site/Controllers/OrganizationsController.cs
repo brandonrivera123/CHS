@@ -21,7 +21,10 @@ namespace CHS_Auction_Site.Controllers
         // GET: Organizations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Organizations.ToListAsync());
+            var organizations = await _context.Organizations.ToListAsync();
+            var editOrgVM = new EditOrganizationsVM { Organizations = organizations };
+
+            return View(editOrgVM);
         }
 
         // GET: Organizations/Details/5
