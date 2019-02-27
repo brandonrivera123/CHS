@@ -10,7 +10,6 @@ namespace CHS_Auction_Site.Models
     public class ItemPackagesVM
     {
         public IEnumerable<Items> items { get; set; }
-        public IEnumerable<Packages> packages { get; set; }
 
         public int ItemId { get; set; }
         public string ItemName { get; set; }

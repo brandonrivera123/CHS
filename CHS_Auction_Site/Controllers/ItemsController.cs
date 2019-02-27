@@ -22,12 +22,8 @@ namespace CHS_Auction_Site.Controllers
         public async Task<IActionResult> Index()
         {
             var items = _context.Items.Include(i => i.Guest).Include(i => i.Package);
-            var packages = await _context.Packages.ToListAsync();
-            if (packages == null)
-            {
-                return NotFound();
-            }
-            var itemsPackages = new ItemPackagesVM { items = items, packages = packages };
+
+            var itemsPackages = new ItemPackagesVM { items = items};
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", itemsPackages.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", itemsPackages.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", itemsPackages.PackageId);
