@@ -1,13 +1,13 @@
-﻿@model IEnumerable<CHS_Auction_Site.Models.Organizations>
+﻿@model CHS_Auction_Site.Models.EditOrganizationsVM
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Organizations</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#addOrgModal" class="btn btn-primary">Create New</a>
 </p>
 <div class="table-responsive">
 <table class="table table-striped table-hover">
@@ -18,18 +18,93 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Organizations) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.OrganizationName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrganizationId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrganizationId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrganizationId">Delete</a>
+                <a href="#" data-toggle="modal" data-target="#editOrgModal-@item.OrganizationId">Edit</a> |
+                <a href="#" data-toggle="modal" data-target="#deleteOrgModal-@item.OrganizationId">Delete</a>
             </td>
         </tr>
+
+        <div class="modal fade" id="editOrgModal-@item.OrganizationId" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit @item.OrganizationName</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="Edit" asp-route-id="@item.OrganizationId">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="OrganizationId" value="@item.OrganizationId"/>
+                            <div class="form-group">
+                                <label asp-for="@item.OrganizationName" class="control-label"></label>
+                                <input asp-for="OrganizationName" class="form-control" value="@item.OrganizationName"/>
+                                <span asp-validation-for="@item.OrganizationName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="deleteOrgModal-@item.OrganizationId" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Are you sure you want to delete this organization?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Name: 
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.OrganizationName)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="Delete" asp-route-id="@item.OrganizationId">
+                            <input type="hidden" asp-for="@item.OrganizationId" />
+                            <input type="submit" value="Delete" class="btn btn-primary" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 }
     </tbody>
 </table>
+</div>
+
+<div class="modal fade" id="addOrgModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a New Organization</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="OrganizationName" class="control-label"></label>
+                        <input asp-for="OrganizationName" class="form-control" />
+                        <span asp-validation-for="OrganizationName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
