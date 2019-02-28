@@ -9,30 +9,22 @@ using CHS_Auction_Site.Models;
 
 namespace CHS_Auction_Site.Controllers
 {
-    public class EventsController : Controller
+    public class CategoriesController : Controller
     {
         private readonly EventBasedAuctionSoftwareContext _context;
 
-        public EventsController(EventBasedAuctionSoftwareContext context)
+        public CategoriesController(EventBasedAuctionSoftwareContext context)
         {
             _context = context;
         }
 
-        // GET: Events
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            var currentEvents = await _context.Events.ToListAsync();
-            var editEvent = new Events();
-
-            var editEventVM = new EditEventVM
-            {
-                CurrentEvents = currentEvents
-            };
-
-            return View(editEventVM);
+            return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Events/Details/5
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -40,57 +32,39 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
-            var events = await _context.Events
-                .FirstOrDefaultAsync(m => m.EventId == id);
-            if (events == null)
+            var categories = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (categories == null)
             {
                 return NotFound();
             }
 
-            var packages = await _context.Packages.ToListAsync();
-            if (packages == null)
-            {
-                return NotFound();
-            }
-
-            var packageLocations = new Packages();
-
-            var eventPackages = new EventDetailsVM
-            {
-                Events = events,
-                GetPackageLocations = packageLocations,
-                Packages = packages
-            };
-
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packageLocations.EventId);
-            ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packageLocations.TransactionId);
-
-            return View(eventPackages);
+            return View(categories);
         }
 
-        // GET: Events/Create
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal")] Events events)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Categories categories)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(events);
+                _context.Add(categories);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(events);
+            return View(categories);
         }
 
-        // GET: Events/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -98,22 +72,22 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
-            var events = await _context.Events.FindAsync(id);
-            if (events == null)
+            var categories = await _context.Categories.FindAsync(id);
+            if (categories == null)
             {
                 return NotFound();
             }
-            return View(events);
+            return View(categories);
         }
 
-        // POST: Events/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal")] Events events)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Categories categories)
         {
-            if (id != events.EventId)
+            if (id != categories.CategoryId)
             {
                 return NotFound();
             }
@@ -122,12 +96,12 @@ namespace CHS_Auction_Site.Controllers
             {
                 try
                 {
-                    _context.Update(events);
+                    _context.Update(categories);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventsExists(events.EventId))
+                    if (!CategoriesExists(categories.CategoryId))
                     {
                         return NotFound();
                     }
@@ -138,10 +112,10 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(events);
+            return View(categories);
         }
 
-        // GET: Events/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,30 +123,30 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
-            var events = await _context.Events
-                .FirstOrDefaultAsync(m => m.EventId == id);
-            if (events == null)
+            var categories = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (categories == null)
             {
                 return NotFound();
             }
 
-            return View(events);
+            return View(categories);
         }
 
-        // POST: Events/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var events = await _context.Events.FindAsync(id);
-            _context.Events.Remove(events);
+            var categories = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(categories);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EventsExists(int id)
+        private bool CategoriesExists(int id)
         {
-            return _context.Events.Any(e => e.EventId == id);
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

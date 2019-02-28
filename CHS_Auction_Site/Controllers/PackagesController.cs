@@ -21,8 +21,9 @@ namespace CHS_Auction_Site.Controllers
         // GET: Packages
         public async Task<IActionResult> Index()
         {
-            var eventBasedAuctionSoftwareContext = _context.Packages.Include(p => p.Event).Include(p => p.Transaction);
-            return View(await eventBasedAuctionSoftwareContext.ToListAsync());
+            var packages = await _context.Packages.Include(p => p.Event).Include(p => p.Transaction).ToListAsync();
+            var editPackage = new EditPackageVM { Packages = packages};
+            return View(editPackage);
         }
 
         // GET: Packages/Details/5
@@ -42,7 +43,22 @@ namespace CHS_Auction_Site.Controllers
                 return NotFound();
             }
 
-            return View(packages);
+            var items = await _context.Items.ToListAsync();
+            if (items == null)
+            {
+                return NotFound();
+            }
+
+            var packageItems = new PackageDetailsVM
+            {
+                Packages = packages,
+                Items = items
+            };
+
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
+
+            return View(packageItems);
         }
 
         // GET: Packages/Create

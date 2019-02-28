@@ -25,10 +25,13 @@
     <Content Remove="wwwroot\lib\bootstrap\dist\css\superhero.css" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="wwwroot\lib\bootstrap\dist\css\superhero.css" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Models\Hello.cs" />
     <Compile Remove="Controllers\testController.cs" />
+    <Compile Remove="Models\ItemsPackagesVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\superhero.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

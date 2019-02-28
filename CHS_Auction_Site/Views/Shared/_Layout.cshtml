@@ -34,45 +34,27 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img  style="height:22px;" src="https://www.chsfl.org/wp-content/themes/chs-childrens-home-society-web/dist/img/chs_logo_white.svg" alt="History - Children's Home Society of Florida"></a>
                 </div>
                 <div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-						<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-						<li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-area="" asp-controller="Guests" asp-action="Index">Guests</a></li>
+                    @* //Navbar tabs *@
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Payments">Payments</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="NewItem">New Item</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="ItemLog">Item Log</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Event">Events</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="TicketSales">Ticket Sales</a></li>
-                            </ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Guest<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a asp-area="" asp-controller="Home" asp-action="CheckIn">Check In</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Event">Events</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
-                                <li><a asp-area="" asp-controller="Home" asp-action="Invoice">Invoice</a></li>
-                            </ul>
-						</li>
+                        <li><a asp-area="" asp-controller="Items" asp-action="Index">Items</a></li>
+                        <li><a asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
+                        <li><a asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a></li>
+
+                       
+                        @* //Drop down for Guest tab *@
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Database Links<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Guest<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a asp-area="" asp-controller="Admins" asp-action="Index">Admins</a></li>
-                                <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
-                                <li><a asp-area="" asp-controller="Guests" asp-action="Index">Guests</a></li>
-                                <li><a asp-area="" asp-controller="Items" asp-action="Index">Items</a></li>
-                                <li><a asp-area="" asp-controller="Organizations" asp-action="Index">Orgs</a></li>
-                                <li><a asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
-                                <li><a asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a></li>
+                                <li><a asp-area="" asp-controller="Guests" asp-action="Index">Guest List</a></li>
+                                <li><a asp-area="" asp-controller="Organizations" asp-action="Index">Organizations List</a></li>
+
+
                             </ul>
                         </li>
-					</ul>
+
+                    </ul>
                 </div>
             </div>
         </nav>
