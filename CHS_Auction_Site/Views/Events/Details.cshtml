@@ -132,34 +132,34 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <input type="hidden" asp-for="PackageId" value="@item.PackageId"/>
                                     <div class="form-group">
-                                        <label asp-for="@item.PackageDescription" class="control-label"></label>
+                                        <label asp-for="@item.PackageDescription" class="control-label">Description</label>
                                         <input asp-for="PackageDescription" class="form-control" value="@item.PackageDescription"/>
                                         <span asp-validation-for="@item.PackageDescription" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="@item.PackageStartBid" class="control-label"></label>
+                                        <label asp-for="@item.PackageStartBid" class="control-label">Starting Bid</label>
                                         <input asp-for="PackageStartBid" class="form-control" value="@item.PackageStartBid"/>
                                         <span asp-validation-for="@item.PackageStartBid" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="@item.PackageBidIncrement" class="control-label"></label>
+                                        <label asp-for="@item.PackageBidIncrement" class="control-label">Bid Increment</label>
                                         <input asp-for="PackageBidIncrement" class="form-control" value="@item.PackageBidIncrement"/>
                                         <span asp-validation-for="@item.PackageBidIncrement" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="@item.PackageFinalPrice" class="control-label"></label>
+                                        <label asp-for="@item.PackageFinalPrice" class="control-label">Package Final Price</label>
                                         <input asp-for="PackageFinalPrice" class="form-control" value="@item.PackageFinalPrice"/>
                                         <span asp-validation-for="@item.PackageFinalPrice" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="@item.EventId" class="control-label"></label>
+                                        <label asp-for="@item.EventId" class="control-label">Event Id</label>
                                         <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId">
                                             <option value="@Model.Events.EventId" selected>@Html.DisplayFor(model => Model.Events.EventLocation)</option>
                                         </select>
                                         <span asp-validation-for="@item.EventId" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="@item.TransactionId" class="control-label"></label>
+                                        <label asp-for="@item.TransactionId" class="control-label">Transaction Id</label>
                                         <select asp-for="TransactionId" class="form-control" asp-items="ViewBag.TransactionId">
                                             <option value="@Model.TransactionId" selected>@Html.DisplayFor(model => Model.TransactionId)</option>
                                         </select>
