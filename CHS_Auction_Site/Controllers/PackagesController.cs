@@ -23,6 +23,9 @@ namespace CHS_Auction_Site.Controllers
         {
             var packages = await _context.Packages.Include(p => p.Event).Include(p => p.Transaction).ToListAsync();
             var editPackage = new EditPackageVM { Packages = packages};
+
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation");
+            ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId");
             return View(editPackage);
         }
 
