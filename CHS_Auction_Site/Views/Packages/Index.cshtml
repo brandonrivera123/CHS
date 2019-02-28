@@ -20,7 +20,8 @@
                     <p style="height:45px; overflow:hidden">@Html.DisplayFor(modelItem => item.PackageDescription)</p>
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editPackageModal-@item.PackageId">Edit</a>
                     <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewPackageDetailModal-@item.PackageId">View Details</a>
-                    <a href="#" class="btn btn-default" data-toggle="modal" data-target="#deletePackageModal-@item.PackageId">Delete</a>
+                    <a class="btn btn-default" asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId">View Items</a>
+                    <a href="#" class="btn btn-default" style="display:block" data-toggle="modal" data-target="#deletePackageModal-@item.PackageId">Delete</a>
                 </div>
             </div>
         </div>

@@ -65,6 +65,7 @@ namespace CHS_Auction_Site.Controllers
             return View(packageItems);
         }
 
+
         // GET: Packages/Create
         public IActionResult Create()
         {
