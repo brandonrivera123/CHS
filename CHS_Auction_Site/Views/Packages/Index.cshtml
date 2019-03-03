@@ -16,7 +16,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>@Html.DisplayFor(modelItem => item.PackageId)</h3>
+                    <h3>@Html.DisplayFor(modelItem => item.PackageName)</h3>
                     <p style="height:45px; overflow:hidden">@Html.DisplayFor(modelItem => item.PackageDescription)</p>
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editPackageModal-@item.PackageId">Edit</a>
                     <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewPackageDetailModal-@item.PackageId">View Details</a>
@@ -32,7 +32,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Package No. @item.PackageId</h4>
+                        <h4 class="modal-title">@item.PackageName</h4>
                     </div>
                     <div class="modal-body">
                         <div>
@@ -40,6 +40,9 @@
                                 <fieldset>
                                     <p class="col-lg-3">ID: </p>
                                     <p class="col-lg-9">@Html.DisplayFor(modelItem => item.PackageId)</p>
+
+                                    <p class="col-lg-3">Name: </p>
+                                    <p class="col-lg-9">@Html.DisplayFor(modelItem => item.PackageName)</p>
 
                                     <p class="col-lg-3">Description: </p>
                                     <p class="col-lg-9">@Html.DisplayFor(modelItem => item.PackageDescription)</p>
@@ -74,13 +77,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Edit Package No. @Html.DisplayFor(model => item.PackageId)</h4>
+                        <h4 class="modal-title">Edit @item.PackageName</h4>
                     </div>
                     <div class="modal-body">
                         <div>
                             <form asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="PackageId" value="@item.PackageId" />
+                                <div class="form-group">
+                                    <label asp-for="@item.PackageName" class="control-label">Name</label>
+                                    <input asp-for="PackageName" class="form-control" value="@item.PackageName" />
+                                    <span asp-validation-for="@item.PackageName" class="text-danger"></span>
+                                </div>
                                 <div class="form-group">
                                     <label asp-for="@item.PackageDescription" class="control-label">Description</label>
                                     <input asp-for="PackageDescription" class="form-control" value="@item.PackageDescription" />
@@ -134,6 +142,12 @@
                     </div>
                     <div class="modal-body">
                         <dl class="dl-horizontal">
+                            <dt>
+                                Name:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.PackageName)
+                            </dd>
                             <dt>
                                 Description: 
                             </dt>
@@ -194,6 +208,11 @@
             <div class="modal-body">
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="PackageName" class="control-label">Name</label>
+                        <input asp-for="PackageName" class="form-control" />
+                        <span asp-validation-for="PackageName" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="PackageDescription" class="control-label">Description</label>
                         <input asp-for="PackageDescription" class="form-control" />

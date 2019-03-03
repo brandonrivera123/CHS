@@ -231,6 +231,11 @@ namespace CHS_Auction_Site.Models
 
                 entity.Property(e => e.PackageBidIncrement).HasColumnName("Package_BidIncrement");
 
+                entity.Property(e => e.PackageName)
+                    .HasColumnName("Package_Name")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.PackageDescription)
                     .IsRequired()
                     .HasColumnName("Package_Description")

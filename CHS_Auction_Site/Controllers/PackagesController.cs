@@ -59,7 +59,7 @@ namespace CHS_Auction_Site.Controllers
             };
 
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName");
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", packageItems.CategoryId);
 
             return View(packageItems);
@@ -79,7 +79,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PackageId,PackageDescription,PackageStartBid,PackageBidIncrement,PackageFinalPrice,EventId,TransactionId")] Packages packages)
+        public async Task<IActionResult> Create([Bind("PackageId,PackageName,PackageDescription,PackageStartBid,PackageBidIncrement,PackageFinalPrice,EventId,TransactionId")] Packages packages)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PackageId,PackageDescription,PackageStartBid,PackageBidIncrement,PackageFinalPrice,EventId,TransactionId")] Packages packages)
+        public async Task<IActionResult> Edit(int id, [Bind("PackageId,PackageName,PackageDescription,PackageStartBid,PackageBidIncrement,PackageFinalPrice,EventId,TransactionId")] Packages packages)
         {
             if (id != packages.PackageId)
             {

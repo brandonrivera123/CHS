@@ -11,9 +11,8 @@ namespace CHS_Auction_Site.Models
         public Packages GetPackageLocations { get; set; }
         public IEnumerable<Packages> Packages { get; set; }
 
-        public string PackageName { get; set; }
-
         public int PackageId { get; set; }
+        public string PackageName { get; set; }
         public string PackageDescription { get; set; }
         public int PackageStartBid { get; set; }
         public int PackageBidIncrement { get; set; }
