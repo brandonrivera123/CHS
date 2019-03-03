@@ -7,7 +7,7 @@
 <h2>Guests</h2>
 
 <p>
-    <a href="#" data-toggle="modal" data-target="#addGuestModal" class="btn btn-primary">Add Guest</a>
+    <a href="#" data-toggle="modal" data-target="#addGuestModal" class="btn btn-primary">Add a New Guest</a>
 </p>
 <div class="table-responsive">
 <table class="table table-striped table-hover">
@@ -16,7 +16,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Phone</th>
+            <th>Phone Number</th>
             <th>Street Address</th>
             <th>City</th>
             <th>State</th>
@@ -89,7 +89,7 @@
                                 @Html.DisplayFor(model => item.GuestEmail)
                             </dd>
                             <dt>
-                                Phone: 
+                                Phone Number: 
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.GuestPhone)
@@ -141,34 +141,34 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add New Guest</h4>
+                        <h4 class="modal-title">Edit @item.GuestFirstName @item.GuestLastName</h4>
                     </div>
                     <div class="modal-body">
                         <form asp-action="Edit" asp-route-id="@item.GuestId">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="GuestId" value="@item.GuestId"/>
                             <div class="form-group">
-                                <label asp-for="@item.GuestFirstName" class="control-label"></label>
+                                <label asp-for="@item.GuestFirstName" class="control-label">First Name</label>
                                 <input asp-for="GuestFirstName" class="form-control" value="@item.GuestFirstName"/>
                                 <span asp-validation-for="@item.GuestFirstName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestLastName" class="control-label"></label>
+                                <label asp-for="@item.GuestLastName" class="control-label">Last Name</label>
                                 <input asp-for="GuestLastName" class="form-control" value="@item.GuestLastName"/>
                                 <span asp-validation-for="@item.GuestLastName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestEmail" class="control-label"></label>
+                                <label asp-for="@item.GuestEmail" class="control-label">Email</label>
                                 <input asp-for="GuestEmail" class="form-control" value="@item.GuestEmail"/>
                                 <span asp-validation-for="@item.GuestEmail" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestPhone" class="control-label"></label>
+                                <label asp-for="@item.GuestPhone" class="control-label">Phone Number</label>
                                 <input asp-for="GuestPhone" class="form-control" value="@item.GuestPhone"/>
                                 <span asp-validation-for="@item.GuestPhone" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.OrganizationId" class="control-label"></label>
+                                <label asp-for="@item.OrganizationId" class="control-label">Organization</label>
                                 <select asp-for="OrganizationId" class="form-control" asp-items="ViewBag.OrganizationId">
                                     <option value="@item.OrganizationId" selected></option>
                                     <option value="">None</option>
@@ -176,22 +176,22 @@
                                 <span asp-validation-for="@item.OrganizationId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestAddress" class="control-label"></label>
+                                <label asp-for="@item.GuestAddress" class="control-label">Street Address</label>
                                 <input asp-for="GuestAddress" class="form-control" value="@item.GuestAddress"/>
                                 <span asp-validation-for="@item.GuestAddress" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestCity" class="control-label"></label>
+                                <label asp-for="@item.GuestCity" class="control-label">City</label>
                                 <input asp-for="GuestCity" class="form-control" value="@item.GuestCity"/>
                                 <span asp-validation-for="@item.GuestCity" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestState" class="control-label"></label>
+                                <label asp-for="@item.GuestState" class="control-label">State</label>
                                 <input asp-for="GuestState" class="form-control" value="@item.GuestState"/>
                                 <span asp-validation-for="@item.GuestState" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@item.GuestZip" class="control-label"></label>
+                                <label asp-for="@item.GuestZip" class="control-label">ZIP</label>
                                 <input asp-for="GuestZip" class="form-control" value="@item.GuestZip"/>
                                 <span asp-validation-for="@item.GuestZip" class="text-danger"></span>
                             </div>
@@ -219,48 +219,48 @@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="GuestFirstName" class="control-label"></label>
+                        <label asp-for="GuestFirstName" class="control-label">First Name</label>
                         <input asp-for="GuestFirstName" class="form-control" />
                         <span asp-validation-for="GuestFirstName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestLastName" class="control-label"></label>
+                        <label asp-for="GuestLastName" class="control-label">Last Name</label>
                         <input asp-for="GuestLastName" class="form-control" />
                         <span asp-validation-for="GuestLastName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestEmail" class="control-label"></label>
+                        <label asp-for="GuestEmail" class="control-label">Email</label>
                         <input asp-for="GuestEmail" class="form-control" />
                         <span asp-validation-for="GuestEmail" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestPhone" class="control-label"></label>
+                        <label asp-for="GuestPhone" class="control-label">Phone Number</label>
                         <input asp-for="GuestPhone" class="form-control" />
                         <span asp-validation-for="GuestPhone" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="OrganizationId" class="control-label"></label>
+                        <label asp-for="OrganizationId" class="control-label">Organization</label>
                         <select asp-for="OrganizationId" class="form-control" asp-items="ViewBag.OrganizationId">
                             <option value="" selected>None</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestAddress" class="control-label"></label>
+                        <label asp-for="GuestAddress" class="control-label">Street Address</label>
                         <input asp-for="GuestAddress" class="form-control" />
                         <span asp-validation-for="GuestAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestCity" class="control-label"></label>
+                        <label asp-for="GuestCity" class="control-label">City</label>
                         <input asp-for="GuestCity" class="form-control" />
                         <span asp-validation-for="GuestCity" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestState" class="control-label"></label>
+                        <label asp-for="GuestState" class="control-label">State</label>
                         <input asp-for="GuestState" class="form-control" />
                         <span asp-validation-for="GuestState" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="GuestZip" class="control-label"></label>
+                        <label asp-for="GuestZip" class="control-label">ZIP</label>
                         <input asp-for="GuestZip" class="form-control" />
                         <span asp-validation-for="GuestZip" class="text-danger"></span>
                     </div>

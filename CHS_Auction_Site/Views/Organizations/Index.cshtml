@@ -1,13 +1,13 @@
 ﻿@model CHS_Auction_Site.Models.EditOrganizationsVM
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Organizations";
 }
 
 <h2>Organizations</h2>
 
 <p>
-    <a href="#" data-toggle="modal" data-target="#addOrgModal" class="btn btn-primary">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#addOrgModal" class="btn btn-primary">Create New Organization</a>
 </p>
 <div class="table-responsive">
 <table class="table table-striped table-hover">
@@ -41,7 +41,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="OrganizationId" value="@item.OrganizationId"/>
                             <div class="form-group">
-                                <label asp-for="@item.OrganizationName" class="control-label"></label>
+                                <label asp-for="@item.OrganizationName" class="control-label">Name</label>
                                 <input asp-for="OrganizationName" class="form-control" value="@item.OrganizationName"/>
                                 <span asp-validation-for="@item.OrganizationName" class="text-danger"></span>
                             </div>
@@ -96,7 +96,7 @@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="OrganizationName" class="control-label"></label>
+                        <label asp-for="OrganizationName" class="control-label">Name</label>
                         <input asp-for="OrganizationName" class="form-control" />
                         <span asp-validation-for="OrganizationName" class="text-danger"></span>
                     </div>

@@ -69,7 +69,7 @@
                                     @Html.DisplayFor(model => item.EventTicketNum)
                                 </dd>
                                 <dt>
-                                    Event Goal
+                                    Revenue Goal
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventGoal)
@@ -128,7 +128,7 @@
                                     <span asp-validation-for="@item.EventTicketNum" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="@item.EventGoal" class="control-label">Event Goal</label>
+                                    <label asp-for="@item.EventGoal" class="control-label">Revenue Goal</label>
                                     <input asp-for="EventGoal" class="form-control" value="@item.EventGoal" />
                                     <span asp-validation-for="@item.EventGoal" class="text-danger"></span>
                                 </div>
@@ -162,7 +162,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create a new Event</h4>
+                <h4 class="modal-title">Create a New Event</h4>
             </div>
             <div class="modal-body">
                 <div>
@@ -184,18 +184,18 @@
                             <span asp-validation-for="EventTicketNum" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="EventGoal" class="control-label"> Event Goal</label>
+                            <label asp-for="EventGoal" class="control-label">Revenue Goal</label>
                             <input asp-for="EventGoal" class="form-control" />
                             <span asp-validation-for="EventGoal" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="EventStart" class="control-label">Start Time</label>
-                            <input asp-for="EventStart" class="form-control" />
+                            <input asp-for="EventStart" class="form-control" value=""/>
                             <span asp-validation-for="EventStart" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="EventEnd" class="control-label">End Time</label>
-                            <input asp-for="EventEnd" class="form-control" />
+                            <input asp-for="EventEnd" class="form-control" value=""/>
                             <span asp-validation-for="EventEnd" class="text-danger"></span>
                         </div>
                         <div class="form-group">
