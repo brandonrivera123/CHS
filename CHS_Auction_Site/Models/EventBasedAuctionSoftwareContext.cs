@@ -17,6 +17,7 @@ namespace CHS_Auction_Site.Models
 
         public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<CheckIns> CheckIns { get; set; }
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Guests> Guests { get; set; }
         public virtual DbSet<Items> Items { get; set; }
@@ -69,6 +70,33 @@ namespace CHS_Auction_Site.Models
                     .HasColumnName("Category_Name")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<CheckIns>(entity =>
+            {
+                entity.HasKey(e => e.CheckInId);
+
+                entity.Property(e => e.CheckInId).HasColumnName("CheckIn_ID");
+
+                entity.Property(e => e.CheckInBidderNumber)
+                    .HasColumnName("CheckIn_BidderNumber")
+                    .IsRequired();
+
+                entity.Property(e => e.GuestId).HasColumnName("Guest_ID");
+
+                entity.Property(e => e.EventId).HasColumnName("Event_ID");
+
+                entity.HasOne(d => d.Guest)
+                    .WithMany(p => p.CheckIns)
+                    .HasForeignKey(d => d.GuestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CheckIns__Guest___2B0A656D");
+
+                entity.HasOne(d => d.Event)
+                    .WithMany(p => p.CheckIns)
+                    .HasForeignKey(d => d.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CheckIns__Event___2BFE89A6");
             });
 
             modelBuilder.Entity<Events>(entity =>

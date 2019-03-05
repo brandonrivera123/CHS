@@ -7,6 +7,7 @@ namespace CHS_Auction_Site.Models
     {
         public Events()
         {
+            CheckIns = new HashSet<CheckIns>();
             Packages = new HashSet<Packages>();
         }
 
@@ -19,6 +20,7 @@ namespace CHS_Auction_Site.Models
         public int EventGoal { get; set; }
         public string EventURL { get; set; }
 
+        public ICollection<CheckIns> CheckIns { get; set; }
         public ICollection<Packages> Packages { get; set; }
     }
 }
