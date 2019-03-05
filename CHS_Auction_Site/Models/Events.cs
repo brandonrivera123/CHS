@@ -17,6 +17,7 @@ namespace CHS_Auction_Site.Models
         public DateTime EventEnd { get; set; }
         public string EventName { get; set; }
         public int EventGoal { get; set; }
+        public string EventURL { get; set; }
 
         public ICollection<Packages> Packages { get; set; }
     }

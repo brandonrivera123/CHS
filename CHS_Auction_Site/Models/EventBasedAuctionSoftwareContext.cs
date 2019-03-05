@@ -99,6 +99,11 @@ namespace CHS_Auction_Site.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.EventGoal).HasColumnName("Event_Goal");
+
+                entity.Property(e => e.EventURL)
+                    .HasColumnName("Event_Link")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Guests>(entity =>
