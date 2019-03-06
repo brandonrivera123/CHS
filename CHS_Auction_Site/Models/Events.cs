@@ -9,6 +9,7 @@ namespace CHS_Auction_Site.Models
         {
             CheckIns = new HashSet<CheckIns>();
             Packages = new HashSet<Packages>();
+            Tickets = new HashSet<Tickets>();
         }
 
         public int EventId { get; set; }
@@ -22,5 +23,6 @@ namespace CHS_Auction_Site.Models
 
         public ICollection<CheckIns> CheckIns { get; set; }
         public ICollection<Packages> Packages { get; set; }
+        public ICollection<Tickets> Tickets { get; set; }
     }
 }

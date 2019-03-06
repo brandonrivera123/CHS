@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using CHS_Auction_Site.Models;
 
 namespace CHS_Auction_Site.Models
 {
@@ -293,6 +294,51 @@ namespace CHS_Auction_Site.Models
                     .HasConstraintName("FK__Packages__Transa__71D1E811");
             });
 
+            modelBuilder.Entity<Tickets>(entity =>
+            {
+                entity.HasKey(e => e.GuestId);
+
+                entity.HasKey(e => e.EventId);
+
+                entity.Property(e => e.GuestId).HasColumnName("Guest_ID");
+
+                entity.Property(e => e.EventId).HasColumnName("Event_ID");
+
+                entity.Property(e => e.TicketQuantity)
+                    .HasColumnName("Ticket_Quantity")
+                    .IsRequired();
+
+                entity.Property(e => e.TicketPrice)
+                    .HasColumnName("Ticket_Price")
+                    .IsRequired();
+
+                entity.Property(e => e.TicketTotalPrice)
+                    .HasColumnName("Ticket_TotalPrice")
+                    .IsRequired();
+
+                entity.Property(e => e.TransactionId)
+                    .HasColumnName("Transaction_ID")
+                    .IsRequired();
+
+                entity.HasOne(d => d.Guest)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.GuestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Guest_I__2EDAF651");
+
+                entity.HasOne(d => d.Event)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Event_I__2FCF1A8A");
+
+                entity.HasOne(d => d.Transaction)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.TransactionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Transac__30C33EC3");
+            });
+
             modelBuilder.Entity<Transactions>(entity =>
             {
                 entity.HasKey(e => e.TransactionId);
@@ -310,5 +356,7 @@ namespace CHS_Auction_Site.Models
                     .HasConstraintName("FK__Transacti__Guest__74AE54BC");
             });
         }
+
+        public DbSet<CHS_Auction_Site.Models.Tickets> Tickets { get; set; }
     }
 }
