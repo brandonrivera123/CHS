@@ -21,8 +21,17 @@ namespace CHS_Auction_Site.Controllers
         // GET: CheckIns
         public async Task<IActionResult> Index()
         {
-            var eventBasedAuctionSoftwareContext = _context.CheckIns.Include(c => c.Event).Include(c => c.Guest);
-            return View(await eventBasedAuctionSoftwareContext.ToListAsync());
+            var checkins = await _context.CheckIns.Include(c => c.Event).Include(c => c.Guest).ToListAsync(); ;
+
+            var EditCheckInVM = new EditCheckInVM
+            {
+                CheckIns = checkins
+            };
+
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", EditCheckInVM.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", EditCheckInVM.GuestId);
+
+            return View(EditCheckInVM);
         }
 
         // GET: CheckIns/Details/5
@@ -48,8 +57,8 @@ namespace CHS_Auction_Site.Controllers
         // GET: CheckIns/Create
         public IActionResult Create()
         {
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation");
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName");
             return View();
         }
 
@@ -66,8 +75,8 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", checkIns.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", checkIns.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", checkIns.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", checkIns.GuestId);
             return View(checkIns);
         }
 
@@ -84,8 +93,8 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", checkIns.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", checkIns.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", checkIns.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", checkIns.GuestId);
             return View(checkIns);
         }
 
@@ -121,8 +130,8 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", checkIns.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", checkIns.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", checkIns.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", checkIns.GuestId);
             return View(checkIns);
         }
 
