@@ -23,6 +23,7 @@
                     <p>Revenue Goal: @Html.DisplayFor(model => item.EventGoal)</p>
                     <p>Start Time: @Html.DisplayFor(model => item.EventStart)</p>
                     <p>End Time: @Html.DisplayFor(model => item.EventEnd)</p>
+                    <p>Qgiv URL: @Html.DisplayFor(model => item.EventURL)</p>
                     <hr />
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editEventModal-@item.EventId">Edit</a>
                     <a class="btn btn-default" asp-action="Details" asp-route-id="@item.EventId">Details</a>
@@ -69,7 +70,7 @@
                                     @Html.DisplayFor(model => item.EventTicketNum)
                                 </dd>
                                 <dt>
-                                    Event Goal
+                                    Revenue Goal
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventGoal)
@@ -85,6 +86,12 @@
                                 </dt>
                                 <dd>
                                     @Html.DisplayFor(model => item.EventEnd)
+                                </dd>
+                                <dt>
+                                    Qgiv URL
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => item.EventURL)
                                 </dd>
                             </dl>
 
@@ -128,7 +135,7 @@
                                     <span asp-validation-for="@item.EventTicketNum" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="@item.EventGoal" class="control-label">Event Goal</label>
+                                    <label asp-for="@item.EventGoal" class="control-label">Revenue Goal</label>
                                     <input asp-for="EventGoal" class="form-control" value="@item.EventGoal" />
                                     <span asp-validation-for="@item.EventGoal" class="text-danger"></span>
                                 </div>
@@ -141,6 +148,11 @@
                                     <label asp-for="@item.EventEnd" class="control-label">End Time</label>
                                     <input asp-for="EventEnd" class="form-control" type="datetime" value="@item.EventEnd"/>
                                     <span asp-validation-for="@item.EventEnd" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@item.EventURL" class="control-label">Qgiv URL</label>
+                                    <input asp-for="EventURL" class="form-control" value="@item.EventURL" />
+                                    <span asp-validation-for="@item.EventURL" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Save" class="btn btn-primary" />
@@ -162,7 +174,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create a new Event</h4>
+                <h4 class="modal-title">Create a New Event</h4>
             </div>
             <div class="modal-body">
                 <div>
@@ -184,19 +196,24 @@
                             <span asp-validation-for="EventTicketNum" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="EventGoal" class="control-label"> Event Goal</label>
+                            <label asp-for="EventGoal" class="control-label">Revenue Goal</label>
                             <input asp-for="EventGoal" class="form-control" />
                             <span asp-validation-for="EventGoal" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="EventStart" class="control-label">Start Time</label>
-                            <input asp-for="EventStart" class="form-control" />
+                            <input asp-for="EventStart" class="form-control" value=""/>
                             <span asp-validation-for="EventStart" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="EventEnd" class="control-label">End Time</label>
-                            <input asp-for="EventEnd" class="form-control" />
+                            <input asp-for="EventEnd" class="form-control" value=""/>
                             <span asp-validation-for="EventEnd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventURL" class="control-label">Qgiv URL</label>
+                            <input asp-for="EventURL" class="form-control" />
+                            <span asp-validation-for="EventURL" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />

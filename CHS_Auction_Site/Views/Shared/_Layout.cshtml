@@ -38,10 +38,12 @@
                     @* //Navbar tabs *@
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Tickets" asp-action="Index">Ticket Sales</a></li>
                         <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
                         <li><a asp-area="" asp-controller="Items" asp-action="Index">Items</a></li>
                         <li><a asp-area="" asp-controller="Packages" asp-action="Index">Packages</a></li>
                         <li><a asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a></li>
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
 
                        
                         @* //Drop down for Guest tab *@
@@ -54,6 +56,8 @@
 
                             </ul>
                         </li>
+
+                        <li><a asp-area="" asp-controller="CheckIns" asp-action="Index">Check In</a></li>
 
                     </ul>
                 </div>

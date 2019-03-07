@@ -26,7 +26,7 @@ namespace CHS_Auction_Site.Controllers
             var itemsPackages = new ItemPackagesVM { items = items};
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", itemsPackages.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", itemsPackages.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", itemsPackages.PackageId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName", itemsPackages.PackageId);
             return View(itemsPackages);
         }
 
@@ -55,7 +55,7 @@ namespace CHS_Auction_Site.Controllers
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId");
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace CHS_Auction_Site.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName", items.PackageId);
             return View(items);
         }
 
@@ -93,7 +93,7 @@ namespace CHS_Auction_Site.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName", items.PackageId);
             return View(items);
         }
 
@@ -133,7 +133,7 @@ namespace CHS_Auction_Site.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", items.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId", items.GuestId);
-            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageId", items.PackageId);
+            ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName", items.PackageId);
             return View(items);
         }
 

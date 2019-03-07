@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using CHS_Auction_Site.Models;
 
 namespace CHS_Auction_Site.Models
 {
@@ -17,11 +18,13 @@ namespace CHS_Auction_Site.Models
 
         public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<CheckIns> CheckIns { get; set; }
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Guests> Guests { get; set; }
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Organizations> Organizations { get; set; }
         public virtual DbSet<Packages> Packages { get; set; }
+        public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -71,6 +74,33 @@ namespace CHS_Auction_Site.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<CheckIns>(entity =>
+            {
+                entity.HasKey(e => e.CheckInId);
+
+                entity.Property(e => e.CheckInId).HasColumnName("CheckIn_ID");
+
+                entity.Property(e => e.CheckInBidderNumber)
+                    .HasColumnName("CheckIn_BidderNumber")
+                    .IsRequired();
+
+                entity.Property(e => e.GuestId).HasColumnName("Guest_ID");
+
+                entity.Property(e => e.EventId).HasColumnName("Event_ID");
+
+                entity.HasOne(d => d.Guest)
+                    .WithMany(p => p.CheckIns)
+                    .HasForeignKey(d => d.GuestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CheckIns__Guest___2B0A656D");
+
+                entity.HasOne(d => d.Event)
+                    .WithMany(p => p.CheckIns)
+                    .HasForeignKey(d => d.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CheckIns__Event___2BFE89A6");
+            });
+
             modelBuilder.Entity<Events>(entity =>
             {
                 entity.HasKey(e => e.EventId);
@@ -99,6 +129,11 @@ namespace CHS_Auction_Site.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.EventGoal).HasColumnName("Event_Goal");
+
+                entity.Property(e => e.EventURL)
+                    .HasColumnName("Event_Link")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Guests>(entity =>
@@ -231,6 +266,11 @@ namespace CHS_Auction_Site.Models
 
                 entity.Property(e => e.PackageBidIncrement).HasColumnName("Package_BidIncrement");
 
+                entity.Property(e => e.PackageName)
+                    .HasColumnName("Package_Name")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.PackageDescription)
                     .IsRequired()
                     .HasColumnName("Package_Description")
@@ -253,6 +293,56 @@ namespace CHS_Auction_Site.Models
                     .WithMany(p => p.Packages)
                     .HasForeignKey(d => d.TransactionId)
                     .HasConstraintName("FK__Packages__Transa__71D1E811");
+            });
+
+            modelBuilder.Entity<Tickets>(entity =>
+            {
+                entity.HasKey(e => e.TicketId);
+
+                entity.Property(e => e.TicketId).HasColumnName("Ticket_ID");
+
+                entity.Property(e => e.GuestId)
+                    .HasColumnName("Guest_ID")
+                    .IsRequired();
+
+                entity.Property(e => e.EventId)
+                    .HasColumnName("Event_ID")
+                    .IsRequired();
+
+                entity.Property(e => e.TicketQuantity)
+                    .HasColumnName("Ticket_Quantity")
+                    .IsRequired();
+
+                entity.Property(e => e.TicketPrice)
+                    .HasColumnName("Ticket_Price")
+                    .IsRequired();
+
+                entity.Property(e => e.TicketTotalPrice)
+                    .HasColumnName("Ticket_TotalPrice")
+                    .ValueGeneratedOnAddOrUpdate()
+                    .IsRequired();
+
+                entity.Property(e => e.TransactionId)
+                    .HasColumnName("Transaction_ID")
+                    .IsRequired();
+
+                entity.HasOne(d => d.Guest)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.GuestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Guest_I__2EDAF651");
+
+                entity.HasOne(d => d.Event)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Event_I__2FCF1A8A");
+
+                entity.HasOne(d => d.Transaction)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.TransactionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Tickets__Transac__30C33EC3");
             });
 
             modelBuilder.Entity<Transactions>(entity =>

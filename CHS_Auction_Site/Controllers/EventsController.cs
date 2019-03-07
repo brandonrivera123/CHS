@@ -79,7 +79,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal")] Events events)
+        public async Task<IActionResult> Create([Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal,EventURL")] Events events)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal")] Events events)
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,EventLocation,EventTicketNum,EventStart,EventEnd,EventName,EventGoal,EventURL")] Events events)
         {
             if (id != events.EventId)
             {

@@ -7,7 +7,9 @@ namespace CHS_Auction_Site.Models
     {
         public Guests()
         {
+            CheckIns = new HashSet<CheckIns>();
             Items = new HashSet<Items>();
+            Tickets = new HashSet<Tickets>();
             Transactions = new HashSet<Transactions>();
         }
 
@@ -25,5 +27,7 @@ namespace CHS_Auction_Site.Models
         public Organizations Organization { get; set; }
         public ICollection<Items> Items { get; set; }
         public ICollection<Transactions> Transactions { get; set; }
+        public ICollection<CheckIns> CheckIns { get; set; }
+        public ICollection<Tickets> Tickets { get; set; }
     }
 }

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 
 namespace CHS_Auction_Site.Models
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class EditPackageVM
+    public class EventDetailsVM
     {
-        public IEnumerable <Packages> Packages { get; set; }
+        public Events Events { get; set; }
+        public Packages GetPackageLocations { get; set; }
+        public IEnumerable<Packages> Packages { get; set; }
 
         public int PackageId { get; set; }
+        public string PackageName { get; set; }
         public string PackageDescription { get; set; }
         public int PackageStartBid { get; set; }
         public int PackageBidIncrement { get; set; }
@@ -20,5 +20,4 @@ namespace CHS_Auction_Site.Models
         public int EventId { get; set; }
         public int? TransactionId { get; set; }
     }
-
 }

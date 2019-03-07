@@ -11,6 +11,7 @@ namespace CHS_Auction_Site.Models
         }
 
         public int PackageId { get; set; }
+        public string PackageName { get; set; }
         public string PackageDescription { get; set; }
         public int PackageStartBid { get; set; }
         public int PackageBidIncrement { get; set; }

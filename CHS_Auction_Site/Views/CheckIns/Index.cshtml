@@ -1,0 +1,194 @@
+﻿@model CHS_Auction_Site.Models.EditCheckInVM
+
+@{
+    ViewData["Title"] = "Check In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Check In</h2>
+
+<p>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addCheckInModal">New CheckIn</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="label-primary">
+            <tr>
+                <th>
+                    Bidder Number
+                </th>
+                <th>
+                    Guest
+                </th>
+                <th>
+                    Event
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CheckIns)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.CheckInBidderNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Guest.GuestFirstName) @Html.DisplayFor(model => item.Guest.GuestLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Event.EventName)
+                    </td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#editCheckInModal-@item.CheckInId">Edit</a> |
+                        <a href="#" data-toggle="modal" data-target="#viewDetailsCheckInModal-@item.CheckInId">Details</a> |
+                        <a href="#" data-toggle="modal" data-target="#deleteCheckInModal-@item.CheckInId">Delete</a>
+                    </td>
+                </tr>
+
+                <div class="modal fade" id="editCheckInModal-@item.CheckInId" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit CheckIn No. @item.CheckInId</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form asp-action="Edit" asp-route-id="@item.CheckInId">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="CheckInId" value="@item.CheckInId"/>
+                                    <div class="form-group">
+                                        <label asp-for="@item.CheckInBidderNumber" class="control-label"></label>
+                                        <input asp-for="CheckInBidderNumber" class="form-control" value="@item.CheckInBidderNumber"/>
+                                        <span asp-validation-for="@item.CheckInBidderNumber" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.GuestId" class="control-label"></label>
+                                        <select asp-for="GuestId" class="form-control" asp-items="ViewBag.GuestId">
+                                            <option value="@item.GuestId" selected>@item.Guest.GuestFirstName</option>
+                                        </select>
+                                        <span asp-validation-for="@item.GuestId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="@item.EventId" class="control-label"></label>
+                                        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId">
+                                            <option value="@item.EventId" selected>@item.Event.EventName</option>
+                                        </select>
+                                        <span asp-validation-for="@item.EventId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="viewDetailsCheckInModal-@item.CheckInId" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">CheckIn No. @item.CheckInId</h4>
+                            </div>
+                            <div class="modal-body">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Bidder Number
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.CheckInBidderNumber)
+                                    </dd>
+                                    <dt>
+                                        Guest
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.Guest.GuestFirstName) @Html.DisplayFor(model => item.Guest.GuestLastName)
+                                    </dd>
+                                    <dt>
+                                        Event
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.Event.EventName)
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteCheckInModal-@item.CheckInId" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Are you sure you want to delete this checkin?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Bidder Number
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.CheckInBidderNumber)
+                                    </dd>
+                                    <dt>
+                                        Guest
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.Guest.GuestFirstName) @Html.DisplayFor(model => item.Guest.GuestLastName)
+                                    </dd>
+                                    <dt>
+                                        Event
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => item.Event.EventName)
+                                    </dd>
+                                </dl>
+
+                                <form asp-action="Delete" asp-route-id="@item.CheckInId">
+                                    <input type="hidden" asp-for="CheckInId" value="@item.CheckInId"/>
+                                    <input type="submit" value="Delete" class="btn btn-primary" />
+                                    <button type="button" value="Cancel" class="btn btn-default"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="addCheckInModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New CheckIn</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="CheckInBidderNumber" class="control-label">Bidder Number</label>
+                        <input asp-for="CheckInBidderNumber" class="form-control" />
+                        <span asp-validation-for="CheckInBidderNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuestId" class="control-label">Guest</label>
+                        <select asp-for="GuestId" class="form-control" asp-items="ViewBag.GuestId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EventId" class="control-label">Event</label>
+                        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
