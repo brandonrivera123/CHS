@@ -24,6 +24,7 @@ namespace CHS_Auction_Site.Models
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Organizations> Organizations { get; set; }
         public virtual DbSet<Packages> Packages { get; set; }
+        public virtual DbSet<Tickets> Tickets { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -296,13 +297,17 @@ namespace CHS_Auction_Site.Models
 
             modelBuilder.Entity<Tickets>(entity =>
             {
-                entity.HasKey(e => e.GuestId);
+                entity.HasKey(e => e.TicketId);
 
-                entity.HasKey(e => e.EventId);
+                entity.Property(e => e.TicketId).HasColumnName("Ticket_ID");
 
-                entity.Property(e => e.GuestId).HasColumnName("Guest_ID");
+                entity.Property(e => e.GuestId)
+                    .HasColumnName("Guest_ID")
+                    .IsRequired();
 
-                entity.Property(e => e.EventId).HasColumnName("Event_ID");
+                entity.Property(e => e.EventId)
+                    .HasColumnName("Event_ID")
+                    .IsRequired();
 
                 entity.Property(e => e.TicketQuantity)
                     .HasColumnName("Ticket_Quantity")
@@ -314,6 +319,7 @@ namespace CHS_Auction_Site.Models
 
                 entity.Property(e => e.TicketTotalPrice)
                     .HasColumnName("Ticket_TotalPrice")
+                    .ValueGeneratedOnAddOrUpdate()
                     .IsRequired();
 
                 entity.Property(e => e.TransactionId)
@@ -356,7 +362,5 @@ namespace CHS_Auction_Site.Models
                     .HasConstraintName("FK__Transacti__Guest__74AE54BC");
             });
         }
-
-        public DbSet<CHS_Auction_Site.Models.Tickets> Tickets { get; set; }
     }
 }

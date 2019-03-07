@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace CHS_Auction_Site.Models
 {
-    public class Tickets
+    public class EditTicketVM
     {
+        public IEnumerable<Tickets> Tickets { get; set; }
+
         public int TicketId { get; set; }
         public int GuestId { get; set; }
         public int EventId { get; set; }
@@ -14,9 +16,5 @@ namespace CHS_Auction_Site.Models
         public int TicketPrice { get; set; }
         public int TicketTotalPrice { get; set; }
         public int TransactionId { get; set; }
-
-        public Guests Guest { get; set; }
-        public Events Event { get; set; }
-        public Transactions Transaction { get; set; }
     }
 }

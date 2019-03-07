@@ -21,8 +21,18 @@ namespace CHS_Auction_Site.Controllers
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-            var eventBasedAuctionSoftwareContext = _context.Tickets.Include(t => t.Event).Include(t => t.Guest).Include(t => t.Transaction);
-            return View(await eventBasedAuctionSoftwareContext.ToListAsync());
+            var tickets = await _context.Tickets.Include(t => t.Event).Include(t => t.Guest).Include(t => t.Transaction).ToListAsync();
+
+            var EditTicketVM = new EditTicketVM
+            {
+                Tickets = tickets
+            };
+
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", EditTicketVM.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", EditTicketVM.GuestId);
+            ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", EditTicketVM.TransactionId);
+
+            return View(EditTicketVM);
         }
 
         // GET: Tickets/Details/5
@@ -49,8 +59,8 @@ namespace CHS_Auction_Site.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation");
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName");
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId");
             return View();
         }
@@ -60,7 +70,7 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GuestId,EventId,TicketQuantity,TicketPrice,TicketTotalPrice,TransactionId")] Tickets tickets)
+        public async Task<IActionResult> Create([Bind("TicketId,GuestId,EventId,TicketQuantity,TicketPrice,TicketTotalPrice,TransactionId")] Tickets tickets)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +78,8 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", tickets.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", tickets.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", tickets.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", tickets.GuestId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", tickets.TransactionId);
             return View(tickets);
         }
@@ -87,8 +97,8 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", tickets.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", tickets.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", tickets.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", tickets.GuestId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", tickets.TransactionId);
             return View(tickets);
         }
@@ -98,9 +108,9 @@ namespace CHS_Auction_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GuestId,EventId,TicketQuantity,TicketPrice,TicketTotalPrice,TransactionId")] Tickets tickets)
+        public async Task<IActionResult> Edit(int id, [Bind("TicketId,GuestId,EventId,TicketQuantity,TicketPrice,TicketTotalPrice,TransactionId")] Tickets tickets)
         {
-            if (id != tickets.EventId)
+            if (id != tickets.TicketId)
             {
                 return NotFound();
             }
@@ -114,7 +124,7 @@ namespace CHS_Auction_Site.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TicketsExists(tickets.EventId))
+                    if (!TicketsExists(tickets.TicketId))
                     {
                         return NotFound();
                     }
@@ -125,8 +135,8 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", tickets.EventId);
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestAddress", tickets.GuestId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", tickets.EventId);
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", tickets.GuestId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", tickets.TransactionId);
             return View(tickets);
         }
