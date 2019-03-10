@@ -62,7 +62,7 @@ namespace CHS_Auction_Site.Controllers
                 Packages = packages
             };
 
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packageLocations.EventId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", packageLocations.EventId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packageLocations.TransactionId);
 
             return View(eventPackages);

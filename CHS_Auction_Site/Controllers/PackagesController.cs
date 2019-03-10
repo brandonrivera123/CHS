@@ -24,7 +24,7 @@ namespace CHS_Auction_Site.Controllers
             var packages = await _context.Packages.Include(p => p.Event).Include(p => p.Transaction).ToListAsync();
             var editPackage = new EditPackageVM { Packages = packages};
 
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId");
             return View(editPackage);
         }
@@ -58,7 +58,7 @@ namespace CHS_Auction_Site.Controllers
                 Items = items
             };
 
-            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestId");
+            ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName");
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName");
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", packageItems.CategoryId);
 
@@ -69,7 +69,7 @@ namespace CHS_Auction_Site.Controllers
         // GET: Packages/Create
         public IActionResult Create()
         {
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName");
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId");
             return View();
         }
@@ -87,7 +87,7 @@ namespace CHS_Auction_Site.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packages.EventId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", packages.EventId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packages.TransactionId);
             return View(packages);
         }
@@ -105,7 +105,7 @@ namespace CHS_Auction_Site.Controllers
             {
                 return NotFound();
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packages.EventId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", packages.EventId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packages.TransactionId);
             return View(packages);
         }
@@ -142,7 +142,7 @@ namespace CHS_Auction_Site.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventLocation", packages.EventId);
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventName", packages.EventId);
             ViewData["TransactionId"] = new SelectList(_context.Transactions, "TransactionId", "TransactionId", packages.TransactionId);
             return View(packages);
         }
