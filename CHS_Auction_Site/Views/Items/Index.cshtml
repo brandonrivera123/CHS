@@ -4,12 +4,27 @@
     ViewBag.Title = "Items";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#focusedInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#unpackagedItems #itemCard h3").filter(function() {
+        $(this).parentsUntil("#itemRow").toggle($(this).text().toLowerCase().startsWith(value))
+    });
+    $("#packagedItems #packagedItemCard h3").filter(function() {
+        $(this).parentsUntil("#packagedRow").toggle($(this).text().toLowerCase().startsWith(value))
+    });
+  });
+});
+</script>
+
 <h2>Items</h2>
 
 <div class="row">
     <div class="col-lg-3">
         <div class="form-group">
-            <input class="form-control" id="focusedInput" onkeyup="myFunction()" type="text" placeholder="Search">
+            <input class="form-control" id="focusedInput" type="text" placeholder="Search">
         </div>
     </div>
     <div class="col-lg-1">
@@ -39,12 +54,13 @@
         <div id="itemRow" class="row">
             @foreach (var item in Model.items.Where(m => m.PackageId == null))
             {
-                <div id="itemCard" class="col-sm-6 col-md-4">
+                <div id="itemCard" value="@item.ItemName" class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <img src="@Html.DisplayFor(model => item.ItemImage)">
                         <div class="caption">
                             <h3 id="itemName">@Html.DisplayFor(model => item.ItemName)</h3>
                             <p style="height:45px; overflow:hidden">@Html.DisplayFor(model => item.ItemDescription)</p>
+                            @*<h6>@Html.DisplayFor(model => item.CategoryId)</h6>*@
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editItemModal-@item.ItemId">Edit</a>
                             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#viewDetailModal-@item.ItemId">View Details</a>
                             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#deleteItemModal-@item.ItemId">Delete</a>
@@ -221,10 +237,10 @@
         </div>
     </div>
     <div class="tab-pane fade" id="packagedItems">
-        <div class="row">
+        <div id="packagedRow" class="row">
             @foreach (var item in Model.items.Where(m => m.PackageId != null))
             {
-                <div class="col-sm-6 col-md-4">
+                <div id="packagedItemCard" class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <img src="@Html.DisplayFor(model => item.ItemImage)">
                         <div class="caption">
@@ -350,43 +366,43 @@
                             <div class="modal-body">
                                 <dl class="dl-horizontal">
                                     <dt>
-                                        Name: 
+                                        Name:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.ItemName)
                                     </dd>
                                     <dt>
-                                        Description: 
+                                        Description:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.ItemDescription)
                                     </dd>
                                     <dt>
-                                        Category: 
+                                        Category:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.CategoryId)
                                     </dd>
                                     <dt>
-                                        Image Path: 
+                                        Image Path:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.ItemImage)
                                     </dd>
                                     <dt>
-                                        Value: 
+                                        Value:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.ItemValue)
                                     </dd>
                                     <dt>
-                                        Donor: 
+                                        Donor:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.Guest.GuestId)
                                     </dd>
                                     <dt>
-                                        Package: 
+                                        Package:
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => item.Package.PackageId)
@@ -394,7 +410,7 @@
                                 </dl>
 
                                 <form asp-action="Delete" asp-route-id="@item.ItemId">
-                                    <input type="hidden" asp-for="ItemId" value="@item.ItemId"/>
+                                    <input type="hidden" asp-for="ItemId" value="@item.ItemId" />
                                     <input type="submit" value="Delete" class="btn btn-primary" />
                                     <a href="#" data-dismiss="modal" class="btn btn-default">Cancel</a>
                                 </form>
@@ -462,22 +478,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
-</script>
+
+
 
