@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CHS_Auction_Site.Models
 {
@@ -10,6 +11,7 @@ namespace CHS_Auction_Site.Models
         public string ItemDescription { get; set; }
         public int? CategoryId { get; set; }
         public string ItemImage { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public int ItemValue { get; set; }
         public int? PackageId { get; set; }
         public int GuestId { get; set; }
