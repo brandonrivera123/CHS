@@ -4,16 +4,34 @@
     ViewData["Title"] = "Packages";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#focusedInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#packageCard h3").filter(function() {
+        $(this).parentsUntil("#packageRow").toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 <h2>Packages</h2>
-
-<p>
-    <a href="#" data-toggle="modal" data-target="#addPackageModal" class="btn btn-primary">Create New Package</a>
-</p>
-
 <div class="row">
+    <div class="col-lg-3">
+        <div class="form-group">
+            <input class="form-control" id="focusedInput" type="text" placeholder="Search">
+        </div>
+    </div>
+    <div class="col-lg-1">
+        <a href="#" data-toggle="modal" data-target="#addPackageModal" class="btn btn-primary">Create New Package</a>
+    </div>
+</div>
+
+<div id="packageRow" class="row">
     @foreach (var item in Model.Packages)
     {
-        <div class="col-sm-6 col-md-4">
+        <div id="packageCard" class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
                     <h3>@Html.DisplayFor(modelItem => item.PackageName)</h3>
@@ -149,37 +167,37 @@
                                 @Html.DisplayFor(model => item.PackageName)
                             </dd>
                             <dt>
-                                Description: 
+                                Description:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.PackageDescription)
                             </dd>
                             <dt>
-                                Starting Bid: 
+                                Starting Bid:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.PackageStartBid)
                             </dd>
                             <dt>
-                                Bid Increment: 
+                                Bid Increment:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.PackageBidIncrement)
                             </dd>
                             <dt>
-                                Final Price: 
+                                Final Price:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.PackageFinalPrice)
                             </dd>
                             <dt>
-                                Event: 
+                                Event:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.Event.EventLocation)
                             </dd>
                             <dt>
-                                Transaction: 
+                                Transaction:
                             </dt>
                             <dd>
                                 @Html.DisplayFor(model => item.Transaction.TransactionId)
@@ -187,7 +205,7 @@
                         </dl>
 
                         <form asp-action="Delete" asp-route-id="@item.PackageId">
-                            <input type="hidden" asp-for="PackageId" value="@item.PackageId"/>
+                            <input type="hidden" asp-for="PackageId" value="@item.PackageId" />
                             <input type="submit" value="Delete" class="btn btn-primary" />
                             <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
                         </form>

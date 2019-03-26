@@ -3,6 +3,18 @@
 @{
     ViewData["Title"] = Model.Events.EventName;
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#focusedInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#packageCard h3").filter(function() {
+        $(this).parentsUntil("#packageRow").toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 
 <div>
     <h2>@Html.DisplayFor(model => model.Events.EventName)</h2>
@@ -68,7 +80,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="form-group">
-                <input class="form-control" id="focusedInput" onkeyup="myFunction()" type="text" placeholder="Search">
+                <input class="form-control" id="focusedInput" type="text" placeholder="Search">
             </div>
         </div>
         <div class="col-lg-1">
@@ -76,10 +88,21 @@
         </div>
     </div>
 
-    <div class="row">
+    @*<div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <input class="form-control" id="focusedInput" onkeyup="myFunction()" type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#createPackageModal">Add New Package</a>
+            </div>
+        </div>*@
+
+    <div id="packageRow" class="row">
         @foreach (var item in Model.Packages.Where(m => m.EventId == Model.Events.EventId))
         {
-            <div class="col-sm-6 col-md-4">
+            <div id="packageCard" class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <div class="caption">
                         <h3>@Html.DisplayFor(model => item.PackageName)</h3>
@@ -141,7 +164,7 @@
                             <div>
                                 <form asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <input type="hidden" asp-for="PackageId" value="@item.PackageId"/>
+                                    <input type="hidden" asp-for="PackageId" value="@item.PackageId" />
                                     <div class="form-group">
                                         <label asp-for="@item.PackageName" class="control-label">Name</label>
                                         <input asp-for="PackageName" class="form-control" value="@item.PackageName" />
@@ -149,22 +172,22 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="@item.PackageDescription" class="control-label">Description</label>
-                                        <input asp-for="PackageDescription" class="form-control" value="@item.PackageDescription"/>
+                                        <input asp-for="PackageDescription" class="form-control" value="@item.PackageDescription" />
                                         <span asp-validation-for="@item.PackageDescription" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="@item.PackageStartBid" class="control-label">Starting Bid</label>
-                                        <input asp-for="PackageStartBid" class="form-control" value="@item.PackageStartBid"/>
+                                        <input asp-for="PackageStartBid" class="form-control" value="@item.PackageStartBid" />
                                         <span asp-validation-for="@item.PackageStartBid" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="@item.PackageBidIncrement" class="control-label">Bid Increment</label>
-                                        <input asp-for="PackageBidIncrement" class="form-control" value="@item.PackageBidIncrement"/>
+                                        <input asp-for="PackageBidIncrement" class="form-control" value="@item.PackageBidIncrement" />
                                         <span asp-validation-for="@item.PackageBidIncrement" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="@item.PackageFinalPrice" class="control-label">Final Price</label>
-                                        <input asp-for="PackageFinalPrice" class="form-control" value="@item.PackageFinalPrice"/>
+                                        <input asp-for="PackageFinalPrice" class="form-control" value="@item.PackageFinalPrice" />
                                         <span asp-validation-for="@item.PackageFinalPrice" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

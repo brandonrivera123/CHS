@@ -24,6 +24,7 @@ namespace CHS_Auction_Site.Controllers
             var items = _context.Items.Include(i => i.Guest).Include(i => i.Package);
 
             var itemsPackages = new ItemPackagesVM { items = items};
+
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", itemsPackages.CategoryId);
             ViewData["GuestId"] = new SelectList(_context.Guests, "GuestId", "GuestFirstName", itemsPackages.GuestId);
             ViewData["PackageId"] = new SelectList(_context.Packages, "PackageId", "PackageName", itemsPackages.PackageId);
