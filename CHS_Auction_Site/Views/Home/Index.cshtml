@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CHS_Auction_Site.Models.Events>
+
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="jumbotron">
@@ -10,27 +12,20 @@
     <!--<p class="lead">Dashboard</p>-->
     <p><a href="https://www.chsfl.org/history/" class="btn btn-primary btn-lg">About Us</a></p>
 </div>
-<div>
+<div class="panel-body">
     <hr />
-    <h2>List of Upcoming Events:</h2>
-    <hr />
-</div>
-<div class="row">
-    @*<div class="col-md-4">
-        <h2>Silent Auction Items</h2>
-        <p>
-            Here you can view all silent auction items.
-        </p>
-        <p><a class="btn btn-default" href="./Home/Event">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Live Auctions</h2>
-        <p>Here you can view live auction items</p>
-        <p><a class="btn btn-default" href="./Home/Event">Learn more &raquo;</a></p>
-    </div>*@
-    <div class="col-md-4">
-        <h2>All Events</h2>
-        <p>Here you can view all events going on.</p>
-        <p><a class="btn btn-default" href="./Events">Click Here &raquo;</a></p>
-    </div>
+    <h3>List of Upcoming Events:</h3>
+    @foreach (var item in Model.Where(m => (m.EventStart - DateTime.Now).TotalDays < 30 && (m.EventEnd - DateTime.Now).TotalDays > 0))
+    {
+        <div id="eventCard" class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>@Html.DisplayFor(model => item.EventName)</h4>
+                    <p>Location: @Html.DisplayFor(model => item.EventLocation)</p>
+                    <p>Start Time: @Html.DisplayFor(model => item.EventStart)</p>
+                    <a class="btn btn-primary" asp-controller="Events" asp-action="Details" asp-route-id="@item.EventId">Details</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>

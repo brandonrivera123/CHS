@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CHS_Auction_Site.Models;
+using Microsoft.EntityFrameworkCore;
 
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
@@ -13,15 +14,24 @@ namespace CHS_Auction_Site.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly EventBasedAuctionSoftwareContext _context;
+
         //private readonly IConfiguration configuration;
 
         //public HomeController(IConfiguration config)
         //{
-            //this.configuration = config;
+        //this.configuration = config;
         //}
-
-        public IActionResult Index()
+        
+        public HomeController (EventBasedAuctionSoftwareContext context)
         {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var currentEvents = await _context.Events.ToListAsync();
+
             //string connectionstring = configuration.GetConnectionString("AuctionDatabase");
 
             //SqlConnection connection = new SqlConnection(connectionstring);
@@ -32,7 +42,7 @@ namespace CHS_Auction_Site.Controllers
             //ViewData["Total"] = ha;
             //connection.Close();
 
-            return View();
+            return View(currentEvents);
         }
 
         public IActionResult About()
